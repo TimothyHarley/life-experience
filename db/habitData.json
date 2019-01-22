@@ -1,0 +1,102 @@
+{
+  "habit1": {
+    "category": "fitness",
+    "description": "Went for a run",
+    "isTimed": true
+  },
+  "habit2": {
+    "category": "fitness",
+    "description": "Went swimming",
+    "isTimed": true
+  },
+  "habit3": {
+    "category": "fitness",
+    "description": "Worked Out",
+    "isTimed": true
+  },
+  "habit4": {
+    "category": "fitness",
+    "description": "Woke up early",
+    "isTimed": false
+  },
+  "habit5": {
+    "category": "academic",
+    "description": "Read a book",
+    "isTimed": true
+  },
+  "habit6": {
+    "category": "academic",
+    "description": "Watched a documentary",
+    "isTimed": true
+  },
+  "habit7": {
+    "category": "academic",
+    "description": "Did Homework/ Studied",
+    "isTimed": true
+  },
+  "habit8": {
+    "category": "academic",
+    "description": "Practiced an instrument",
+    "isTimed": true
+  },
+  "habit9": {
+    "category": "social",
+    "description": "Called family/friend that I don't live with",
+    "isTimed": true
+  },
+  "habit10": {
+    "category": "social",
+    "description": "Hosted a party",
+    "isTimed": true
+  },
+  "habit11": {
+    "category": "social",
+    "description": "Made/Kept plans with someone",
+    "isTimed": false
+  },
+  "habit12": {
+    "category": "social",
+    "description": "Played a game with someone",
+    "isTimed": true
+  },
+  "habit13": {
+    "category": "home",
+    "description": "Did the dishes",
+    "isTimed": true
+  },
+  "habit14": {
+    "category": "home",
+    "description": "Vaccuumed",
+    "isTimed": true
+  },
+  "habit15": {
+    "category": "home",
+    "description": "Finished a load of laundry",
+    "isTimed": false
+  },
+  "habit16": {
+    "category": "home",
+    "description": "Mopped the floors",
+    "isTimed": true
+  },
+  "habit17": {
+    "category": "creativity",
+    "description": "Wrote/ Worked on a story",
+    "isTimed": true
+  },
+  "habit18": {
+    "category": "creativity",
+    "description": "Journaled",
+    "isTimed": true
+  },
+  "habit19": {
+    "category": "creativity",
+    "description": "Painted/Drew something",
+    "isTimed": true
+  },
+  "habit20": {
+    "category": "creativity",
+    "description": "solved a puzzle",
+    "isTimed": false
+  }
+}
