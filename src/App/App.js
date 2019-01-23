@@ -7,6 +7,8 @@ import MyNavbar from '../components/myNavbar/myNavbar';
 import connection from '../helpers/data/connection';
 import Auth from '../components/auth/auth';
 import Profile from '../components/profile/profile';
+import Habits from '../components/habits/habits';
+import Records from '../components/records/records';
 import authRequests from '../helpers/data/authRequests';
 import './App.scss';
 
@@ -47,7 +49,7 @@ class App extends Component {
     if (!this.state.authed) {
       return (
         <div className="App">
-          <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
+          <MyNavbar isAuthed={this.state.authed} />
           <Auth isAuthenticated={this.isAuthenticated} />
         </div>
       );
@@ -57,6 +59,8 @@ class App extends Component {
       <div className="App">
         <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
         <Profile />
+        <Habits />
+        <Records />
       </div>
     );
   }
