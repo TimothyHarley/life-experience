@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink as RRNavLink } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -23,6 +24,21 @@ class MyNavbar extends React.Component {
 
   render() {
     const { isAuthed, logoutClickEvent } = this.props;
+    const buildNavbar = () => {
+      if (isAuthed) {
+        return (
+          <Nav className="ml-auto" navbar>
+            <NavItem className="row">
+              <NavLink tag={RRNavLink} to='/home'>Profile</NavLink>
+              <NavLink tag={RRNavLink} to='/habits'>Habits</NavLink>
+              <NavLink tag={RRNavLink} to='/records'>Records</NavLink>
+              <NavLink onClick={logoutClickEvent} className='text-danger'>Logout</NavLink>
+            </NavItem>
+          </Nav>
+        );
+      }
+      return <Nav className='ml-auto' navbar/>;
+    };
 
     return (
       <div className="my-navbar">
@@ -30,11 +46,7 @@ class MyNavbar extends React.Component {
           <NavbarBrand href="/">Life Experience</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                { isAuthed ? <NavLink className="navLink" onClick={logoutClickEvent}>Logout</NavLink> : ''}
-              </NavItem>
-            </Nav>
+            {buildNavbar()}
           </Collapse>
         </Navbar>
       </div>
