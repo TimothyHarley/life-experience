@@ -9,7 +9,7 @@ class Habits extends React.Component {
   }
 
   componentDidMount() {
-    habitRequests.getHabits()
+    habitRequests.getHabits('fitness')
       .then((habits) => {
         this.setState({ habits });
       });
@@ -27,7 +27,7 @@ class Habits extends React.Component {
     return (
       <div className='habits'>
         <h2>Habits</h2>
-        <div className='habitCardContainer'>
+        <div className='habitCardContainer d-flex flex-wrap justify-content-center'>
           {singleHabitCards}
         </div>
       </div>

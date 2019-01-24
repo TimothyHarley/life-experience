@@ -12,14 +12,14 @@ class SingleHabit extends React.Component {
   render() {
     const { habit } = this.props;
     return (
-      <div>
-      <Card inverse>
-        <CardImg width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97270&w=318&h=270&bg=333333&txtclr=666666" alt="Card image cap" />
-        <CardImgOverlay>
-          <CardTitle>{habit.description}</CardTitle>
-        </CardImgOverlay>
-      </Card>
-    </div>
+      <div className="habitCard p-4">
+        <Card inverse>
+          <CardImg src="https://upload.wikimedia.org/wikipedia/commons/3/30/Blue_ice_from_Furka_glacier%2C_Switzerland.jpg" alt="Card image cap" />
+          <CardImgOverlay>
+            <CardTitle className="p-4">{habit.description}</CardTitle>
+          </CardImgOverlay>
+        </Card>
+      </div>
     );
   }
 }
