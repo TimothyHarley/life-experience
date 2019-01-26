@@ -1,6 +1,8 @@
 import axios from 'axios';
 import moment from 'moment';
 import apiKeys from '../apiKeys';
+import userRequests from './userRequests';
+import habitRequests from './habitRequests';
 
 const firebaseUrl = apiKeys.firebaseConfig.databaseURL;
 
@@ -24,9 +26,22 @@ const getAllRecords = () => new Promise((resolve, reject) => {
 });
 
 const getAllRecordsWithCategories = () => new Promise((resolve, reject) => {
-  // stuff goes here //
+  let habits = [];
+  habitRequests.getHabits()
+    .then((hbts) => {
+      habits = hbts;
+      getAllRecords()
+        .then((rcrds) => {
+          const records = rcrds.map(rcrd => Object.assign(
+            { ...habits.find(x => x.category === rcrd.category), ...rcrd },
+          ));
+          resolve(records);
+        });
+    })
+    .catch(error => reject(error));
 });
 
 export default {
   getAllRecords,
+  getAllRecordsWithCategories,
 };
