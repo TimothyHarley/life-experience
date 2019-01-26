@@ -4,7 +4,7 @@ import apiKeys from '../apiKeys';
 const firebaseUrl = apiKeys.firebaseConfig.databaseURL;
 
 const getHabits = category => new Promise((resolve, reject) => {
-  axios.get(`${firebaseUrl}/habitData.json?orderBy="category"&equalTo="${category}"`)
+  axios.get(`${firebaseUrl}/habits.json?orderBy="category"&equalTo="${category}"`)
     .then((results) => {
       const habitsArray = [];
       const habitsObj = results.data;
