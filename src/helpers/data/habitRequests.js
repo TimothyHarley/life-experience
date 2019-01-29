@@ -21,6 +21,25 @@ const getHabits = category => new Promise((resolve, reject) => {
     });
 });
 
+const getAllHabits = () => new Promise((resolve, reject) => {
+  axios.get(`${firebaseUrl}/habits.json`)
+    .then((results) => {
+      const habitsArray = [];
+      const habitsObj = results.data;
+      if (habitsObj !== null) {
+        Object.keys(habitsObj).forEach((habit) => {
+          habitsObj[habit].id = habit;
+          habitsArray.push(habitsObj[habit]);
+        });
+      }
+      resolve(habitsArray);
+    })
+    .catch((error) => {
+      reject(error);
+    });
+});
+
 export default {
   getHabits,
+  getAllHabits,
 };

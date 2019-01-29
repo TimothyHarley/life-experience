@@ -1,13 +1,12 @@
 import axios from 'axios';
 import moment from 'moment';
 import apiKeys from '../apiKeys';
-import userRequests from './userRequests';
 import habitRequests from './habitRequests';
 
 const firebaseUrl = apiKeys.firebaseConfig.databaseURL;
 
-const getAllRecords = () => new Promise((resolve, reject) => {
-  axios.get(`${firebaseUrl}/records.json`)
+const getAllRecords = uid => new Promise((resolve, reject) => {
+  axios.get(`${firebaseUrl}/records.json?orderBy="uid"&equalTo="${uid}"`)
     .then((result) => {
       const recordsArray = [];
       const recordsObj = result.data;
@@ -25,15 +24,15 @@ const getAllRecords = () => new Promise((resolve, reject) => {
     });
 });
 
-const getAllRecordsWithCategories = () => new Promise((resolve, reject) => {
+const getAllRecordsWithCategories = uid => new Promise((resolve, reject) => {
   let habits = [];
-  habitRequests.getHabits()
+  habitRequests.getAllHabits()
     .then((hbts) => {
       habits = hbts;
-      getAllRecords()
+      getAllRecords(uid)
         .then((rcrds) => {
           const records = rcrds.map(rcrd => Object.assign(
-            { ...habits.find(x => x.category === rcrd.category), ...rcrd },
+            { ...habits.find(x => x.id === rcrd.habitId), ...rcrd },
           ));
           resolve(records);
         });

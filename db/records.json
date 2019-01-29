@@ -13,7 +13,7 @@
   },
   "record3": {
     "uid": "54321",
-    "habbitId": "habit6",
+    "habitId": "habit6",
     "timestamp": 1547924200800,
     "timeSpent": 21
   }
