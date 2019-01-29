@@ -1,19 +1,19 @@
 {
-  "userHabit1": {
+  "record1": {
     "uid": "8SsxHOipltZjWgxMHpyqJuCbWlt2",
     "habitId": "habit1",
     "timestamp": 1547924200716,
     "timeSpent": 30
   },
-  "userHabit2": {
+  "record2": {
     "uid": "8SsxHOipltZjWgxMHpyqJuCbWlt2",
     "habitId": "habit7",
     "timestamp": 1547914200716,
     "timeSpent": 45
   },
-  "userHabit3": {
+  "record3": {
     "uid": "54321",
-    "habbitId": "habit6",
+    "habitId": "habit6",
     "timestamp": 1547924200800,
     "timeSpent": 21
   }

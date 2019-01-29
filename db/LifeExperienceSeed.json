@@ -1,5 +1,5 @@
 {
-  "habitData": "Pizza",
-  "userData": "Fries",
-  "userHabits": "Ice Cream"
+  "habits": "Pizza",
+  "users": "Fries",
+  "records": "Ice Cream"
 }
