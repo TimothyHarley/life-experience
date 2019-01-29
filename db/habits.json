@@ -31,7 +31,7 @@
   },
   "habit7": {
     "category": "academic",
-    "description": "Did Homework/ Studied",
+    "description": "Did Homework or Studied",
     "isTimed": true
   },
   "habit8": {
@@ -41,7 +41,7 @@
   },
   "habit9": {
     "category": "social",
-    "description": "Called family/friend that I don't live with",
+    "description": "Called family or a friend that I don't live with",
     "isTimed": true
   },
   "habit10": {
@@ -51,7 +51,7 @@
   },
   "habit11": {
     "category": "social",
-    "description": "Made/Kept plans with someone",
+    "description": "Made or Kept plans with someone",
     "isTimed": false
   },
   "habit12": {
@@ -81,7 +81,7 @@
   },
   "habit17": {
     "category": "creativity",
-    "description": "Wrote/ Worked on a story",
+    "description": "Wrote or Worked on a story",
     "isTimed": true
   },
   "habit18": {
@@ -91,7 +91,7 @@
   },
   "habit19": {
     "category": "creativity",
-    "description": "Painted/Drew something",
+    "description": "Painted or Drew something",
     "isTimed": true
   },
   "habit20": {
