@@ -40,7 +40,10 @@ const getAllRecordsWithCategories = uid => new Promise((resolve, reject) => {
     .catch(error => reject(error));
 });
 
+const deleteRecord = recordId => axios.delete(`${firebaseUrl}/records/${recordId}.json`);
+
 export default {
   getAllRecords,
   getAllRecordsWithCategories,
+  deleteRecord,
 };
