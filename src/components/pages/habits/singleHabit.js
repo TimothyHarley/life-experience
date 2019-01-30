@@ -18,27 +18,32 @@ import {
 
 import './singleHabit.scss';
 
+const defaultRecord = {
+  uid: '',
+  habitId: '',
+  timestamp: '',
+  timeSpent: '',
+};
+
 class SingleHabit extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+    state = {
       modal: false,
+      newRecord: defaultRecord,
     };
 
-    this.toggle = this.toggle.bind(this);
-  }
+    // this.toggle = this.toggle.bind(this);
 
-  toggle() {
-    this.setState({
-      modal: !this.state.modal,
-    });
-  }
+    toggle = () => {
+      this.setState({
+        modal: !this.state.modal,
+      });
+    }
 
-  render() {
-    const { habit } = this.props;
-    const timedHabit = () => {
-      if (habit.isTimed) {
-        return (
+    render() {
+      const { habit } = this.props;
+      const timedHabit = () => {
+        if (habit.isTimed) {
+          return (
           <FormGroup>
                 <Container>
                   <Row>
@@ -61,12 +66,12 @@ class SingleHabit extends React.Component {
                   </Row>
                 </Container>
               </FormGroup>
-        );
-      }
-      return <p>I did this today.</p>;
-    };
+          );
+        }
+        return <p>I did this today.</p>;
+      };
 
-    return (
+      return (
       <div className="habitCard p-4">
         <Card inverse>
           <button className="habitButton" onClick={this.toggle}>
@@ -77,7 +82,7 @@ class SingleHabit extends React.Component {
           </button>
         </Card>
         <div>
-          <Modal className="modal" isOpen={this.state.modal} toggle={this.toggle}>
+          <Modal className="my-modal" isOpen={this.state.modal} toggle={this.toggle}>
             <ModalHeader toggle={this.toggle}>{habit.description}</ModalHeader>
             <ModalBody>
               {timedHabit()}
@@ -89,8 +94,8 @@ class SingleHabit extends React.Component {
           </Modal>
         </div>
       </div>
-    );
-  }
+      );
+    }
 }
 
 export default SingleHabit;
