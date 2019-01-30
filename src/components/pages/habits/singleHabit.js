@@ -36,21 +36,10 @@ class SingleHabit extends React.Component {
 
   render() {
     const { habit } = this.props;
-    return (
-      <div className="habitCard p-4">
-        <Card inverse>
-          <button className="habitButton" onClick={this.toggle}>
-            <CardImg src="https://upload.wikimedia.org/wikipedia/commons/3/30/Blue_ice_from_Furka_glacier%2C_Switzerland.jpg" alt="Card image cap" />
-            <CardImgOverlay>
-              <CardTitle className="p-4">{habit.description}</CardTitle>
-            </CardImgOverlay>
-          </button>
-        </Card>
-        <div>
-          <Modal className="modal" isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-            <ModalHeader toggle={this.toggle}>{habit.description}</ModalHeader>
-            <ModalBody>
-              <FormGroup>
+    const timedHabit = () => {
+      if (habit.isTimed) {
+        return (
+          <FormGroup>
                 <Container>
                   <Row>
                     <Col xs="auto">I did this for</Col>
@@ -72,6 +61,26 @@ class SingleHabit extends React.Component {
                   </Row>
                 </Container>
               </FormGroup>
+        );
+      }
+      return <p>I did this today.</p>;
+    };
+
+    return (
+      <div className="habitCard p-4">
+        <Card inverse>
+          <button className="habitButton" onClick={this.toggle}>
+            <CardImg src="https://upload.wikimedia.org/wikipedia/commons/3/30/Blue_ice_from_Furka_glacier%2C_Switzerland.jpg" alt="Card image cap" />
+            <CardImgOverlay>
+              <CardTitle className="p-4">{habit.description}</CardTitle>
+            </CardImgOverlay>
+          </button>
+        </Card>
+        <div>
+          <Modal className="modal" isOpen={this.state.modal} toggle={this.toggle}>
+            <ModalHeader toggle={this.toggle}>{habit.description}</ModalHeader>
+            <ModalBody>
+              {timedHabit()}
             </ModalBody>
             <ModalFooter>
               <Button color="primary" onClick={this.toggle}>Submit</Button>{' '}
