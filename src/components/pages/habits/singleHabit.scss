@@ -1,3 +1,22 @@
 .habitCard {
   max-width: 300px;
+  .habitButton {
+    cursor: pointer;
+    padding: inherit;
+    border-radius: inherit;
+  }
+}
+
+.timeSelector {
+  max-width: 45px;
+}
+
+.modal {
+  text-align: center;
+  .col-auto {
+    padding: 3px;
+  }
+  .row {
+    margin-left: 110px;
+  }
 }
