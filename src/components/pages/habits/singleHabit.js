@@ -9,6 +9,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  Form,
   FormGroup,
   Input,
   Container,
@@ -17,6 +18,7 @@ import {
 } from 'reactstrap';
 
 import './singleHabit.scss';
+import authRequests from '../../../helpers/data/authRequests';
 
 const defaultRecord = {
   uid: '',
@@ -31,16 +33,31 @@ class SingleHabit extends React.Component {
       newRecord: defaultRecord,
     };
 
-    // this.toggle = this.toggle.bind(this);
-
     toggle = () => {
       this.setState({
         modal: !this.state.modal,
       });
     }
 
+    formSubmit = (e) => {
+      e.preventDefault();
+      const { habit } = this.props;
+      const { onSubmit } = this.props;
+      const myRecord = { ...this.state.newRecord };
+      myRecord.uid = authRequests.currentUser();
+      myRecord.habitId = `${habit.habitId}`;
+      myRecord.timestamp = Date.now();
+      onSubmit(myRecord);
+      this.setState({ newRecord: defaultRecord });
+    }
+
+    onSubmit = () => {
+      console.log(this.newRecord);
+    }
+
     render() {
       const { habit } = this.props;
+      const { newRecord } = this.state;
       const timedHabit = () => {
         if (habit.isTimed) {
           return (
@@ -48,20 +65,9 @@ class SingleHabit extends React.Component {
                 <Container>
                   <Row>
                     <Col xs="auto">I did this for</Col>
-                    <Col xs="auto"><Input className="timeSelector" type="select" name="select" id="exampleSelect">
-                      <option>5</option>
-                      <option>10</option>
-                      <option>15</option>
-                      <option>20</option>
-                      <option>25</option>
-                      <option>30</option>
-                      <option>35</option>
-                      <option>40</option>
-                      <option>45</option>
-                      <option>50</option>
-                      <option>55</option>
-                      <option>60</option>
-                    </Input></Col>
+                    <Col xs="auto">
+                      <Input className="timeInput" type="textarea" name="text" id="exampleSelect" maxlength="2" />
+                    </Col>
                     <Col xs="auto">minutes.</Col>
                   </Row>
                 </Container>
@@ -83,6 +89,7 @@ class SingleHabit extends React.Component {
         </Card>
         <div>
           <Modal className="my-modal" isOpen={this.state.modal} toggle={this.toggle}>
+          <Form onSubmit={this.formSubmit}>
             <ModalHeader toggle={this.toggle}>{habit.description}</ModalHeader>
             <ModalBody>
               {timedHabit()}
@@ -91,6 +98,7 @@ class SingleHabit extends React.Component {
               <Button color="primary" onClick={this.toggle}>Submit</Button>{' '}
               <Button color="secondary" onClick={this.toggle}>Cancel</Button>
             </ModalFooter>
+          </Form>
           </Modal>
         </div>
       </div>
