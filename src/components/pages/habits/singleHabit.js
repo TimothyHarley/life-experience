@@ -33,6 +33,15 @@ class SingleHabit extends React.Component {
       newRecord: defaultRecord,
     };
 
+    formFieldStringState = (name, e) => {
+      e.preventDefault();
+      const tempRecord = { ...this.state.newRecord };
+      tempRecord[name] = e.target.value;
+      this.setState({ newRecord: tempRecord });
+    }
+
+    recordChange = e => this.formFieldStringState('record', e);
+
     toggle = () => {
       this.setState({
         modal: !this.state.modal,
@@ -66,7 +75,14 @@ class SingleHabit extends React.Component {
                   <Row>
                     <Col xs="auto">I did this for</Col>
                     <Col xs="auto">
-                      <Input className="timeInput" type="textarea" name="text" id="exampleSelect" maxlength="2" />
+                      <Input
+                      className="timeInput"
+                      type="textarea"
+                      name="text"
+                      id="exampleSelect"
+                      maxLength="2"
+                      value={newRecord.timeSpent}
+                      onChange={this.recordChange} />
                     </Col>
                     <Col xs="auto">minutes.</Col>
                   </Row>
