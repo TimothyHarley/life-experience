@@ -7,6 +7,8 @@ import authRequests from '../../../helpers/data/authRequests';
 class Records extends React.Component {
   state = {
     records: [],
+    isEditing: false,
+    editId: '-1',
   }
 
   componentDidMount() {
@@ -29,14 +31,21 @@ class Records extends React.Component {
       .catch(error => console.error('delete record error', error));
   }
 
+  passRecordToEdit = recordId => this.setState({ isEditing: true, editId: recordId });
+
   render() {
-    const { records } = this.state;
+    const {
+      records,
+      isEditing,
+      editId,
+    } = this.state;
     const fitness = records.filter(record => record.category === 'fitness');
     const fitnessRecords = fitness.map(record => (
         <SingleRecord
           key={record.id}
           record={record}
           deleteSingleRecord={this.deleteOne}
+          passRecordToEdit={this.passRecordToEdit}
           />
     ));
     const academic = records.filter(record => record.category === 'academic');
@@ -45,6 +54,7 @@ class Records extends React.Component {
           key={record.id}
           record={record}
           deleteSingleRecord={this.deleteOne}
+          passRecordToEdit={this.passRecordToEdit}
           />
     ));
     const social = records.filter(record => record.category === 'social');
@@ -53,6 +63,7 @@ class Records extends React.Component {
           key={record.id}
           record={record}
           deleteSingleRecord={this.deleteOne}
+          passRecordToEdit={this.passRecordToEdit}
           />
     ));
     const home = records.filter(record => record.category === 'home');
@@ -61,6 +72,7 @@ class Records extends React.Component {
           key={record.id}
           record={record}
           deleteSingleRecord={this.deleteOne}
+          passRecordToEdit={this.passRecordToEdit}
           />
     ));
     const creativity = records.filter(record => record.category === 'creativity');
@@ -69,6 +81,7 @@ class Records extends React.Component {
           key={record.id}
           record={record}
           deleteSingleRecord={this.deleteOne}
+          passRecordToEdit={this.passRecordToEdit}
           />
     ));
 
