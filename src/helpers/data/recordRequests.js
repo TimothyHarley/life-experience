@@ -40,6 +40,8 @@ const getAllRecordsWithCategories = uid => new Promise((resolve, reject) => {
     .catch(error => reject(error));
 });
 
+const getSingleRecord = recordId => axios.get(`${firebaseUrl}/records/${recordId}.json`);
+
 const deleteRecord = recordId => axios.delete(`${firebaseUrl}/records/${recordId}.json`);
 
 const createRecord = record => axios.post(`${firebaseUrl}/records.json`, record);
@@ -49,6 +51,7 @@ const updateRecord = (editedRecord, recordId) => axios.put(`${firebaseUrl}/recor
 export default {
   getAllRecords,
   getAllRecordsWithCategories,
+  getSingleRecord,
   deleteRecord,
   createRecord,
   updateRecord,

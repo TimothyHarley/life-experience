@@ -4,33 +4,14 @@ import {
   CardTitle,
   CardImg,
   CardImgOverlay,
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Form,
-  FormGroup,
-  Input,
-  Container,
-  Row,
-  Col,
 } from 'reactstrap';
 
 import './singleHabit.scss';
-import authRequests from '../../../helpers/data/authRequests';
-
-const defaultRecord = {
-  uid: '',
-  habitId: '',
-  timestamp: '',
-  timeSpent: '',
-};
+import RecordModal from '../records/recordModal';
 
 class SingleHabit extends React.Component {
     state = {
       modal: false,
-      newRecord: defaultRecord,
     };
 
     toggle = () => {
@@ -39,56 +20,8 @@ class SingleHabit extends React.Component {
       });
     }
 
-    formFieldStringState = (name, e) => {
-      e.preventDefault();
-      const tempRecord = { ...this.state.newRecord };
-      tempRecord[name] = e.target.value;
-      this.setState({ newRecord: tempRecord });
-    }
-
-    recordChange = e => this.formFieldStringState('timeSpent', e);
-
-    formSubmit = (e) => {
-      e.preventDefault();
-      const { habit } = this.props;
-      const { onSubmit } = this.props;
-      const myRecord = { ...this.state.newRecord };
-      myRecord.uid = authRequests.currentUser();
-      myRecord.habitId = habit.id;
-      myRecord.timestamp = Date.now();
-      onSubmit(myRecord);
-      this.setState({ newRecord: defaultRecord });
-      this.toggle();
-    }
-
     render() {
-      const { habit } = this.props;
-      const { newRecord } = this.state;
-      const timedHabit = () => {
-        if (habit.isTimed) {
-          return (
-            <Container>
-              <Row>
-                <Col xs="auto">I did this for</Col>
-                <Col xs="auto">
-                  <FormGroup>
-                    <Input
-                    className="timeInput"
-                    type="textarea"
-                    name="text"
-                    id="exampleSelect"
-                    maxLength="2"
-                    value={newRecord.timeSpent}
-                    onChange={this.recordChange} />
-                  </FormGroup>
-                </Col>
-                <Col xs="auto">minutes.</Col>
-              </Row>
-            </Container>
-          );
-        }
-        return <p>I did this today.</p>;
-      };
+      const { habit, onSubmit } = this.props;
 
       return (
       <div className="habitCard p-4">
@@ -100,19 +33,12 @@ class SingleHabit extends React.Component {
             </CardImgOverlay>
           </button>
         </Card>
-        <div>
-          <Modal className="my-modal" isOpen={this.state.modal} toggle={this.toggle}>
-            <ModalHeader toggle={this.toggle}>{habit.description}</ModalHeader>
-            <Form>
-              <ModalBody>
-                {timedHabit()}
-              </ModalBody>
-              <ModalFooter>
-                <Button color="primary" onClick={this.formSubmit}>Submit</Button>
-              </ModalFooter>
-            </Form>
-          </Modal>
-        </div>
+        <RecordModal
+          isOpen={this.state.modal}
+          modal={this.state.modal}
+          toggle={this.toggle}
+          habit={habit}
+          onSubmit={onSubmit} />
       </div>
       );
     }
