@@ -10,6 +10,7 @@ import classnames from 'classnames';
 import './habits.scss';
 import SingleHabit from './singleHabit';
 import habitRequests from '../../../helpers/data/habitRequests';
+import recordRequests from '../../../helpers/data/recordRequests';
 
 class Habits extends React.Component {
   constructor(props) {
@@ -46,12 +47,19 @@ class Habits extends React.Component {
       });
   }
 
+  formSubmitEvent = (newRecord) => {
+    recordRequests.createRecord(newRecord)
+      .then()
+      .catch(err => console.error('error with posting record', err));
+  }
+
   render() {
     const { habits } = this.state;
     const singleHabitCards = habits.map(habit => (
       <SingleHabit
         key={habit.id}
         habit={habit}
+        onSubmit={this.formSubmitEvent}
         />
     ));
 

@@ -33,6 +33,12 @@ class SingleHabit extends React.Component {
       newRecord: defaultRecord,
     };
 
+    toggle = () => {
+      this.setState({
+        modal: !this.state.modal,
+      });
+    }
+
     formFieldStringState = (name, e) => {
       e.preventDefault();
       const tempRecord = { ...this.state.newRecord };
@@ -40,13 +46,7 @@ class SingleHabit extends React.Component {
       this.setState({ newRecord: tempRecord });
     }
 
-    recordChange = e => this.formFieldStringState('record', e);
-
-    toggle = () => {
-      this.setState({
-        modal: !this.state.modal,
-      });
-    }
+    recordChange = e => this.formFieldStringState('timeSpent', e);
 
     formSubmit = (e) => {
       e.preventDefault();
@@ -54,14 +54,11 @@ class SingleHabit extends React.Component {
       const { onSubmit } = this.props;
       const myRecord = { ...this.state.newRecord };
       myRecord.uid = authRequests.currentUser();
-      myRecord.habitId = `${habit.habitId}`;
+      myRecord.habitId = habit.id;
       myRecord.timestamp = Date.now();
       onSubmit(myRecord);
       this.setState({ newRecord: defaultRecord });
-    }
-
-    onSubmit = () => {
-      console.log(this.newRecord);
+      this.toggle();
     }
 
     render() {
@@ -70,24 +67,24 @@ class SingleHabit extends React.Component {
       const timedHabit = () => {
         if (habit.isTimed) {
           return (
-          <FormGroup>
-                <Container>
-                  <Row>
-                    <Col xs="auto">I did this for</Col>
-                    <Col xs="auto">
-                      <Input
-                      className="timeInput"
-                      type="textarea"
-                      name="text"
-                      id="exampleSelect"
-                      maxLength="2"
-                      value={newRecord.timeSpent}
-                      onChange={this.recordChange} />
-                    </Col>
-                    <Col xs="auto">minutes.</Col>
-                  </Row>
-                </Container>
-              </FormGroup>
+            <Container>
+              <Row>
+                <Col xs="auto">I did this for</Col>
+                <Col xs="auto">
+                  <FormGroup>
+                    <Input
+                    className="timeInput"
+                    type="textarea"
+                    name="text"
+                    id="exampleSelect"
+                    maxLength="2"
+                    value={newRecord.timeSpent}
+                    onChange={this.recordChange} />
+                  </FormGroup>
+                </Col>
+                <Col xs="auto">minutes.</Col>
+              </Row>
+            </Container>
           );
         }
         return <p>I did this today.</p>;
@@ -105,16 +102,15 @@ class SingleHabit extends React.Component {
         </Card>
         <div>
           <Modal className="my-modal" isOpen={this.state.modal} toggle={this.toggle}>
-          <Form onSubmit={this.formSubmit}>
             <ModalHeader toggle={this.toggle}>{habit.description}</ModalHeader>
-            <ModalBody>
-              {timedHabit()}
-            </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={this.toggle}>Submit</Button>{' '}
-              <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-            </ModalFooter>
-          </Form>
+            <Form>
+              <ModalBody>
+                {timedHabit()}
+              </ModalBody>
+              <ModalFooter>
+                <Button color="primary" onClick={this.formSubmit}>Submit</Button>
+              </ModalFooter>
+            </Form>
           </Modal>
         </div>
       </div>

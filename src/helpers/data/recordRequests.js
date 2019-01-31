@@ -41,9 +41,11 @@ const getAllRecordsWithCategories = uid => new Promise((resolve, reject) => {
 });
 
 const deleteRecord = recordId => axios.delete(`${firebaseUrl}/records/${recordId}.json`);
+const createRecord = record => axios.post(`${firebaseUrl}/records.json`, record);
 
 export default {
   getAllRecords,
   getAllRecordsWithCategories,
   deleteRecord,
+  createRecord,
 };
