@@ -9,6 +9,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  Form,
   FormGroup,
   Input,
   Container,
@@ -17,56 +18,79 @@ import {
 } from 'reactstrap';
 
 import './singleHabit.scss';
+import authRequests from '../../../helpers/data/authRequests';
+
+const defaultRecord = {
+  uid: '',
+  habitId: '',
+  timestamp: '',
+  timeSpent: '',
+};
 
 class SingleHabit extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+    state = {
       modal: false,
+      newRecord: defaultRecord,
     };
 
-    this.toggle = this.toggle.bind(this);
-  }
+    toggle = () => {
+      this.setState({
+        modal: !this.state.modal,
+      });
+    }
 
-  toggle() {
-    this.setState({
-      modal: !this.state.modal,
-    });
-  }
+    formFieldStringState = (name, e) => {
+      e.preventDefault();
+      const tempRecord = { ...this.state.newRecord };
+      tempRecord[name] = e.target.value;
+      this.setState({ newRecord: tempRecord });
+    }
 
-  render() {
-    const { habit } = this.props;
-    const timedHabit = () => {
-      if (habit.isTimed) {
-        return (
-          <FormGroup>
-                <Container>
-                  <Row>
-                    <Col xs="auto">I did this for</Col>
-                    <Col xs="auto"><Input className="timeSelector" type="select" name="select" id="exampleSelect">
-                      <option>5</option>
-                      <option>10</option>
-                      <option>15</option>
-                      <option>20</option>
-                      <option>25</option>
-                      <option>30</option>
-                      <option>35</option>
-                      <option>40</option>
-                      <option>45</option>
-                      <option>50</option>
-                      <option>55</option>
-                      <option>60</option>
-                    </Input></Col>
-                    <Col xs="auto">minutes.</Col>
-                  </Row>
-                </Container>
-              </FormGroup>
-        );
-      }
-      return <p>I did this today.</p>;
-    };
+    recordChange = e => this.formFieldStringState('timeSpent', e);
 
-    return (
+    formSubmit = (e) => {
+      e.preventDefault();
+      const { habit } = this.props;
+      const { onSubmit } = this.props;
+      const myRecord = { ...this.state.newRecord };
+      myRecord.uid = authRequests.currentUser();
+      myRecord.habitId = habit.id;
+      myRecord.timestamp = Date.now();
+      onSubmit(myRecord);
+      this.setState({ newRecord: defaultRecord });
+      this.toggle();
+    }
+
+    render() {
+      const { habit } = this.props;
+      const { newRecord } = this.state;
+      const timedHabit = () => {
+        if (habit.isTimed) {
+          return (
+            <Container>
+              <Row>
+                <Col xs="auto">I did this for</Col>
+                <Col xs="auto">
+                  <FormGroup>
+                    <Input
+                    className="timeInput"
+                    type="textarea"
+                    name="text"
+                    id="exampleSelect"
+                    maxLength="2"
+                    value={newRecord.timeSpent}
+                    onChange={this.recordChange} />
+                  </FormGroup>
+                </Col>
+                <Col xs="auto">minutes.</Col>
+              </Row>
+            </Container>
+          );
+        }
+        return <p>I did this today.</p>;
+      };
+
+      return (
       <div className="habitCard p-4">
         <Card inverse>
           <button className="habitButton" onClick={this.toggle}>
@@ -77,20 +101,21 @@ class SingleHabit extends React.Component {
           </button>
         </Card>
         <div>
-          <Modal className="modal" isOpen={this.state.modal} toggle={this.toggle}>
+          <Modal className="my-modal" isOpen={this.state.modal} toggle={this.toggle}>
             <ModalHeader toggle={this.toggle}>{habit.description}</ModalHeader>
-            <ModalBody>
-              {timedHabit()}
-            </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={this.toggle}>Submit</Button>{' '}
-              <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-            </ModalFooter>
+            <Form>
+              <ModalBody>
+                {timedHabit()}
+              </ModalBody>
+              <ModalFooter>
+                <Button color="primary" onClick={this.formSubmit}>Submit</Button>
+              </ModalFooter>
+            </Form>
           </Modal>
         </div>
       </div>
-    );
-  }
+      );
+    }
 }
 
 export default SingleHabit;
