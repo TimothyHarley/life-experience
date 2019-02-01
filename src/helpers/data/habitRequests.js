@@ -39,7 +39,10 @@ const getAllHabits = () => new Promise((resolve, reject) => {
     });
 });
 
+const getSingleHabit = habitId => axios.get(`${firebaseUrl}/habits/${habitId}.json`);
+
 export default {
   getHabits,
   getAllHabits,
+  getSingleHabit,
 };
