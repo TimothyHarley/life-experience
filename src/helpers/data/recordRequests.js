@@ -15,7 +15,7 @@ const getAllRecords = uid => new Promise((resolve, reject) => {
           recordsObj[record].id = record;
           recordsArray.push(recordsObj[record]);
         });
-        recordsArray.sort((a, b) => moment(a.timestamp).unix() - moment(b.timestamp).unix());
+        recordsArray.sort((a, b) => moment(b.timestamp).unix() - moment(a.timestamp).unix());
       }
       resolve(recordsArray);
     })
@@ -40,12 +40,19 @@ const getAllRecordsWithCategories = uid => new Promise((resolve, reject) => {
     .catch(error => reject(error));
 });
 
+const getSingleRecord = recordId => axios.get(`${firebaseUrl}/records/${recordId}.json`);
+
 const deleteRecord = recordId => axios.delete(`${firebaseUrl}/records/${recordId}.json`);
+
 const createRecord = record => axios.post(`${firebaseUrl}/records.json`, record);
+
+const updateRecord = (editedRecord, recordId) => axios.put(`${firebaseUrl}/records/${recordId}.json`, editedRecord);
 
 export default {
   getAllRecords,
   getAllRecordsWithCategories,
+  getSingleRecord,
   deleteRecord,
   createRecord,
+  updateRecord,
 };

@@ -30,7 +30,9 @@ class Records extends React.Component {
   }
 
   render() {
-    const { records } = this.state;
+    const {
+      records,
+    } = this.state;
     const fitness = records.filter(record => record.category === 'fitness');
     const fitnessRecords = fitness.map(record => (
         <SingleRecord
@@ -73,17 +75,19 @@ class Records extends React.Component {
     ));
 
     return (
-      <div className="records">
-        <h2>Fitness</h2>
-        {fitnessRecords}
-        <h2>Academic</h2>
-        {academicRecords}
-        <h2>Social</h2>
-        {socialRecords}
-        <h2>Home</h2>
-        {homeRecords}
-        <h2>Creativity</h2>
-        {creativityRecords}
+      <div>
+        <div className="records">
+          <h2>Fitness</h2>
+          {fitnessRecords}
+          <h2>Academic</h2>
+          {academicRecords}
+          <h2>Social</h2>
+          {socialRecords}
+          <h2>Home</h2>
+          {homeRecords}
+          <h2>Creativity</h2>
+          {creativityRecords}
+        </div>
       </div>
     );
   }
