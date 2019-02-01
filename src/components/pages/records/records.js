@@ -135,6 +135,7 @@ class Records extends React.Component {
         <div>
           <RecordModal
           isOpen={this.state.modal}
+          modal={this.state.modal}
           toggle={this.toggle}
           onSubmit={this.formSubmitEvent()}
           habit={habits}
