@@ -37,16 +37,18 @@ class SingleRecord extends React.Component {
   }
 
   habitOfRecord = (habitId) => {
-    const myHabit = habitId;
-    habitRequests.getSingleHabit(myHabit)
+    habitRequests.getSingleHabit(habitId)
       .then((habit) => {
-        this.setState({ habit: habit.data });
+        const aHabit = habit.data;
+        aHabit.id = habitId;
+        this.setState({ habit: aHabit });
       });
   }
 
   formSubmitEvent = (newRecord) => {
     const { editId } = this.state;
     const uid = authRequests.currentUser();
+    this.toggle();
     recordRequests.updateRecord(newRecord, editId)
       .then(() => {
         recordRequests.getAllRecordsWithCategories(uid)
