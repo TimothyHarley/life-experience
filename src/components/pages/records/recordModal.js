@@ -64,6 +64,13 @@ class RecordModal extends React.Component {
   render() {
     const { modal, toggle, habit } = this.props;
     const { newRecord } = this.state;
+    const { isEditing } = this.props;
+    const sendButton = () => {
+      if (isEditing) {
+        return <span>Edit</span>;
+      }
+      return <span>Send</span>;
+    };
     const timedHabit = () => {
       if (habit.isTimed) {
         return (
@@ -99,7 +106,7 @@ class RecordModal extends React.Component {
               {timedHabit()}
             </ModalBody>
             <ModalFooter>
-              <Button color="primary" onClick={this.formSubmit}>Submit</Button>
+              <Button color="primary" onClick={this.formSubmit}>{sendButton()}</Button>
             </ModalFooter>
           </Form>
         </Modal>

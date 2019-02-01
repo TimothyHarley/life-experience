@@ -3,6 +3,7 @@ import moment from 'moment';
 import './singleRecord.scss';
 
 class SingleRecord extends React.Component {
+
   deleteEvent = (e) => {
     e.preventDefault();
     const { deleteSingleRecord, record } = this.props;
@@ -13,6 +14,7 @@ class SingleRecord extends React.Component {
     e.preventDefault();
     const { passRecordToEdit, record } = this.props;
     passRecordToEdit(record.id);
+    this.props.toggle();
   }
 
   render() {
