@@ -3,7 +3,6 @@ import moment from 'moment';
 import './singleRecord.scss';
 import RecordModal from './recordModal';
 import habitRequests from '../../../helpers/data/habitRequests';
-import authRequests from '../../../helpers/data/authRequests';
 import recordRequests from '../../../helpers/data/recordRequests';
 
 class SingleRecord extends React.Component {
@@ -47,14 +46,10 @@ class SingleRecord extends React.Component {
 
   formSubmitEvent = (newRecord) => {
     const { editId } = this.state;
-    const uid = authRequests.currentUser();
-    this.toggle();
+    const { loadRecords } = this.props;
     recordRequests.updateRecord(newRecord, editId)
       .then(() => {
-        recordRequests.getAllRecordsWithCategories(uid)
-          .then((records) => {
-            this.setState({ records, editId: '-1' });
-          });
+        loadRecords();
       })
       .catch(err => console.error('error with edit', err));
   }

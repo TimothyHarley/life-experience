@@ -40,13 +40,14 @@ class RecordModal extends React.Component {
 
   formSubmit = (e) => {
     e.preventDefault();
-    const { habit, onSubmit } = this.props;
+    const { habit, onSubmit, toggle } = this.props;
     const myRecord = { ...this.state.newRecord };
     myRecord.uid = authRequests.currentUser();
     myRecord.habitId = habit.id;
     myRecord.timestamp = Date.now();
-    this.setState({ newRecord: defaultRecord });
     onSubmit(myRecord);
+    // this.setState({ newRecord: defaultRecord });
+    toggle();
   }
 
   componentDidUpdate(prevProps) {
@@ -63,6 +64,7 @@ class RecordModal extends React.Component {
   render() {
     const { modal, toggle, habit } = this.props;
     const { newRecord } = this.state;
+    // debugger;
     const { isEditing } = this.props;
     const sendButton = () => {
       if (isEditing) {
