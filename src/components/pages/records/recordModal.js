@@ -46,7 +46,6 @@ class RecordModal extends React.Component {
     myRecord.habitId = habit.id;
     myRecord.timestamp = Date.now();
     onSubmit(myRecord);
-    // this.setState({ newRecord: defaultRecord });
     toggle();
   }
 
@@ -64,7 +63,6 @@ class RecordModal extends React.Component {
   render() {
     const { modal, toggle, habit } = this.props;
     const { newRecord } = this.state;
-    // debugger;
     const { isEditing } = this.props;
     const sendButton = () => {
       if (isEditing) {

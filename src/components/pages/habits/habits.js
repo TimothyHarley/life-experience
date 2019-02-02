@@ -31,17 +31,8 @@ class Habits extends React.Component {
     }
   }
 
-  category(habitTab) {
-    if (this.state.activeTab === habitTab) {
-      habitRequests.getHabits(this.state.activeTab)
-        .then((habits) => {
-          this.setState({ habits });
-        });
-    }
-  }
-
   componentDidMount() {
-    habitRequests.getHabits(this.state.activeTab)
+    habitRequests.getHabits()
       .then((habits) => {
         this.setState({ habits });
       });
@@ -55,13 +46,27 @@ class Habits extends React.Component {
 
   render() {
     const { habits } = this.state;
-    const singleHabitCards = habits.map(habit => (
+
+    const singleHabitCard = (habit => (
       <SingleHabit
         key={habit.id}
         habit={habit}
         onSubmit={this.formSubmitEvent}
         />
     ));
+
+    const fitness = habits.filter(habit => habit.category === 'fitness');
+    const academic = habits.filter(habit => habit.category === 'academic');
+    const social = habits.filter(habit => habit.category === 'social');
+    const home = habits.filter(habit => habit.category === 'home');
+    const creativity = habits.filter(habit => habit.category === 'creativity');
+
+    const fitnessHabits = fitness.map(singleHabitCard);
+    const academicHabits = academic.map(singleHabitCard);
+    const socialHabits = social.map(singleHabitCard);
+    const homeHabits = home.map(singleHabitCard);
+    const creativityHabits = creativity.map(singleHabitCard);
+
 
     return (
       <div className='habits'>
@@ -70,7 +75,7 @@ class Habits extends React.Component {
             <NavItem>
               <NavLink
                 className={classnames({ active: this.state.activeTab === 'fitness' })}
-                onClick={() => { this.toggle('fitness'); this.category('fitness'); }}
+                onClick={() => { this.toggle('fitness'); }}
               >
                 Fitness
               </NavLink>
@@ -78,7 +83,7 @@ class Habits extends React.Component {
             <NavItem>
               <NavLink
                 className={classnames({ active: this.state.activeTab === 'academic' })}
-                onClick={() => { this.toggle('academic'); this.category('academic'); }}
+                onClick={() => { this.toggle('academic'); }}
               >
                 Academic
               </NavLink>
@@ -86,7 +91,7 @@ class Habits extends React.Component {
             <NavItem>
               <NavLink
                 className={classnames({ active: this.state.activeTab === 'social' })}
-                onClick={() => { this.toggle('social'); this.category('social'); }}
+                onClick={() => { this.toggle('social'); }}
               >
                 Social
               </NavLink>
@@ -94,7 +99,7 @@ class Habits extends React.Component {
             <NavItem>
               <NavLink
                 className={classnames({ active: this.state.activeTab === 'home' })}
-                onClick={() => { this.toggle('home'); this.category('home'); }}
+                onClick={() => { this.toggle('home'); }}
               >
                 Home
               </NavLink>
@@ -102,7 +107,7 @@ class Habits extends React.Component {
             <NavItem>
               <NavLink
                 className={classnames({ active: this.state.activeTab === 'creativity' })}
-                onClick={() => { this.toggle('creativity'); this.category('creativity'); }}
+                onClick={() => { this.toggle('creativity'); }}
               >
                 Creativity
               </NavLink>
@@ -111,27 +116,27 @@ class Habits extends React.Component {
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId="fitness">
               <div className='habitCardContainer d-flex flex-wrap justify-content-center'>
-                {singleHabitCards}
+                {fitnessHabits}
               </div>
             </TabPane>
             <TabPane tabId="academic">
               <div className='habitCardContainer d-flex flex-wrap justify-content-center'>
-                {singleHabitCards}
+                {academicHabits}
               </div>
             </TabPane>
             <TabPane tabId="social">
               <div className='habitCardContainer d-flex flex-wrap justify-content-center'>
-                {singleHabitCards}
+                {socialHabits}
               </div>
             </TabPane>
             <TabPane tabId="home">
               <div className='habitCardContainer d-flex flex-wrap justify-content-center'>
-                {singleHabitCards}
+                {homeHabits}
               </div>
             </TabPane>
             <TabPane tabId="creativity">
               <div className='habitCardContainer d-flex flex-wrap justify-content-center'>
-                {singleHabitCards}
+                {creativityHabits}
               </div>
             </TabPane>
           </TabContent>

@@ -34,54 +34,28 @@ class Records extends React.Component {
   }
 
   render() {
-    const {
-      records,
-    } = this.state;
+    const { records } = this.state;
+
+    const singleRecord = (record => (
+      <SingleRecord
+        key={record.id}
+        record={record}
+        deleteSingleRecord={this.deleteOne}
+        loadRecords={this.loadRecords}
+        />
+    ));
+
     const fitness = records.filter(record => record.category === 'fitness');
-    const fitnessRecords = fitness.map(record => (
-        <SingleRecord
-          key={record.id}
-          record={record}
-          deleteSingleRecord={this.deleteOne}
-          loadRecords={this.loadRecords}
-          />
-    ));
     const academic = records.filter(record => record.category === 'academic');
-    const academicRecords = academic.map(record => (
-        <SingleRecord
-          key={record.id}
-          record={record}
-          deleteSingleRecord={this.deleteOne}
-          loadRecords={this.loadRecords}
-          />
-    ));
     const social = records.filter(record => record.category === 'social');
-    const socialRecords = social.map(record => (
-        <SingleRecord
-          key={record.id}
-          record={record}
-          deleteSingleRecord={this.deleteOne}
-          loadRecords={this.loadRecords}
-          />
-    ));
     const home = records.filter(record => record.category === 'home');
-    const homeRecords = home.map(record => (
-        <SingleRecord
-          key={record.id}
-          record={record}
-          deleteSingleRecord={this.deleteOne}
-          loadRecords={this.loadRecords}
-          />
-    ));
     const creativity = records.filter(record => record.category === 'creativity');
-    const creativityRecords = creativity.map(record => (
-        <SingleRecord
-          key={record.id}
-          record={record}
-          deleteSingleRecord={this.deleteOne}
-          loadRecords={this.loadRecords}
-          />
-    ));
+
+    const fitnessRecords = fitness.map(singleRecord);
+    const academicRecords = academic.map(singleRecord);
+    const socialRecords = social.map(singleRecord);
+    const homeRecords = home.map(singleRecord);
+    const creativityRecords = creativity.map(singleRecord);
 
     return (
       <div>
