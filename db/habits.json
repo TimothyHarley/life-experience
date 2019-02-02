@@ -51,7 +51,7 @@
   },
   "habit11": {
     "category": "social",
-    "description": "Made or Kept plans with someone",
+    "description": "Made and Kept plans with someone",
     "isTimed": false
   },
   "habit12": {
@@ -98,5 +98,130 @@
     "category": "creativity",
     "description": "solved a puzzle",
     "isTimed": false
+  },
+  "habit21": {
+    "category": "fitness",
+    "description": "Ate a healthy meal",
+    "isTimed": false
+  },
+  "habit22": {
+    "category": "fitness",
+    "description": "Did Yoga",
+    "isTimed": true
+  },
+  "habit23": {
+    "category": "fitness",
+    "description": "Rode a bicycle",
+    "isTimed": true
+  },
+  "habit24": {
+    "category": "fitness",
+    "description": "Went for a walk",
+    "isTimed": true
+  },
+  "habit25": {
+    "category": "fitness",
+    "description": "Hiked a trail",
+    "isTimed": true
+  },
+  "habit26": {
+    "category": "academic",
+    "description": "Read a news article",
+    "isTimed": true
+  },
+  "habit27": {
+    "category": "academic",
+    "description": "Watched a tutorial",
+    "isTimed": true
+  },
+  "habit28": {
+    "category": "academic",
+    "description": "Got an 'A'",
+    "isTimed": false
+  },
+  "habit29": {
+    "category": "academic",
+    "description": "Wrote a report or research paper",
+    "isTimed": true
+  },
+  "habit30": {
+    "category": "academic",
+    "description": "Had an intelectual conversation",
+    "isTimed": false
+  },
+  "habit31": {
+    "category": "social",
+    "description": "Helped someone move",
+    "isTimed": true
+  },
+  "habit32": {
+    "category": "social",
+    "description": "Had lunch with a new colleague",
+    "isTimed": true
+  },
+  "habit33": {
+    "category": "social",
+    "description": "Brought the beer",
+    "isTimed": false
+  },
+  "habit34": {
+    "category": "social",
+    "description": "Brought snacks",
+    "isTimed": true
+  },
+  "habit35": {
+    "category": "social",
+    "description": "Repaid a personal dept",
+    "isTimed": false
+  },
+  "habit36": {
+    "category": "home",
+    "description": "Took out the garbage",
+    "isTimed": false
+  },
+  "habit37": {
+    "category": "home",
+    "description": "Donated old belongings",
+    "isTimed": true
+  },
+  "habit38": {
+    "category": "home",
+    "description": "Orginized desk or closet",
+    "isTimed": true
+  },
+  "habit39": {
+    "category": "home",
+    "description": "Paid the bills",
+    "isTimed": false
+  },
+  "habit40": {
+    "category": "home",
+    "description": "Fed and walked pets",
+    "isTimed": true
+  },
+  "habit41": {
+    "category": "creativity",
+    "description": "Crafted something",
+    "isTimed": true
+  },
+  "habit42": {
+    "category": "creativity",
+    "description": "Played a non-competitive video game",
+    "isTimed": true
+  },
+  "habit43": {
+    "category": "creativity",
+    "description": "Took a picture that I'm pround of",
+    "isTimed": false
+  },
+  "habit44": {
+    "category": "creativity",
+    "description": "Cooked a new recipie",
+    "isTimed": true
+  },
+  "habit45": {
+    "category": "creativity",
+    "description": "Planned my week",
+    "isTimed": true
   }
 }
