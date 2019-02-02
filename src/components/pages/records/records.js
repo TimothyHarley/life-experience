@@ -9,12 +9,16 @@ class Records extends React.Component {
     records: [],
   }
 
-  componentDidMount() {
+  loadRecords = () => {
     const uid = authRequests.currentUser();
     recordRequests.getAllRecordsWithCategories(uid)
       .then((records) => {
         this.setState({ records });
       });
+  }
+
+  componentDidMount() {
+    this.loadRecords();
   }
 
   deleteOne = (recordId) => {
@@ -39,6 +43,7 @@ class Records extends React.Component {
           key={record.id}
           record={record}
           deleteSingleRecord={this.deleteOne}
+          loadRecords={this.loadRecords}
           />
     ));
     const academic = records.filter(record => record.category === 'academic');
@@ -47,6 +52,7 @@ class Records extends React.Component {
           key={record.id}
           record={record}
           deleteSingleRecord={this.deleteOne}
+          loadRecords={this.loadRecords}
           />
     ));
     const social = records.filter(record => record.category === 'social');
@@ -55,6 +61,7 @@ class Records extends React.Component {
           key={record.id}
           record={record}
           deleteSingleRecord={this.deleteOne}
+          loadRecords={this.loadRecords}
           />
     ));
     const home = records.filter(record => record.category === 'home');
@@ -63,6 +70,7 @@ class Records extends React.Component {
           key={record.id}
           record={record}
           deleteSingleRecord={this.deleteOne}
+          loadRecords={this.loadRecords}
           />
     ));
     const creativity = records.filter(record => record.category === 'creativity');
@@ -71,6 +79,7 @@ class Records extends React.Component {
           key={record.id}
           record={record}
           deleteSingleRecord={this.deleteOne}
+          loadRecords={this.loadRecords}
           />
     ));
 
