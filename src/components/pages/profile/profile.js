@@ -3,14 +3,30 @@ import { Row, Col, Progress } from 'reactstrap';
 import './profile.scss';
 
 import authRequests from '../../../helpers/data/authRequests';
+import userRequests from '../../../helpers/data/userRequests';
 
 class Profile extends React.Component {
+  state = {
+    user: {},
+  };
+
+
+  componentDidMount() {
+    const uid = authRequests.currentUser();
+    userRequests.getCurrentUser(uid)
+      .then((user) => {
+        const aUser = user.data;
+        this.setState({ user: aUser });
+      });
+  }
+
   render() {
     return (
       <Row className="myProfile">
         <Col>
           <img src={authRequests.userProfile().photoURL} alt="your profile"/>
           <h2>{authRequests.userProfile().displayName}</h2>
+          <h2>Level 1</h2>
         </Col>
         <Col>
           <div className="xpBar">

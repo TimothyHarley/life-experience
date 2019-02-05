@@ -21,6 +21,9 @@ const getAllUsers = () => new Promise((resolve, reject) => {
     });
 });
 
+const getCurrentUser = uid => axios.get(`${firebaseUrl}/users.json?orderBy="uid"&equalTo="${uid}"`);
+
 export default {
   getAllUsers,
+  getCurrentUser,
 };

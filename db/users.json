@@ -1,14 +1,32 @@
 {
   "user1": {
     "uid": "8SsxHOipltZjWgxMHpyqJuCbWlt2",
-    "username": "Tim Harley"
+    "username": "Tim Harley",
+    "userLevel": 1,
+    "fitnessXp": 1,
+    "academicXp": 1,
+    "socialXp": 1,
+    "homeXp": 1,
+    "creativityXp": 1
   },
   "user2": {
     "uid": "54321",
-    "username": "Rubber Duck"
+    "username": "Rubber Duck",
+    "userLevel": 1,
+    "fitnessXp": 1,
+    "academicXp": 1,
+    "socialXp": 1,
+    "homeXp": 1,
+    "creativityXp": 1
   },
   "user3": {
     "uid": "34215",
-    "username": "Hue Mann"
+    "username": "Hue Mann",
+    "userLevel": 1,
+    "fitnessXp": 1,
+    "academicXp": 1,
+    "socialXp": 1,
+    "homeXp": 1,
+    "creativityXp": 1
   }
 }
