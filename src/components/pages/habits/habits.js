@@ -13,15 +13,11 @@ import habitRequests from '../../../helpers/data/habitRequests';
 import recordRequests from '../../../helpers/data/recordRequests';
 
 class Habits extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    activeTab: 'fitness',
+    habits: [],
+  };
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      activeTab: 'fitness',
-      habits: [],
-    };
-  }
 
   toggle(tab) {
     if (this.state.activeTab !== tab) {
