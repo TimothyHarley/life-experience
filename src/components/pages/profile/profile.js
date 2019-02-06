@@ -7,7 +7,7 @@ import userRequests from '../../../helpers/data/userRequests';
 
 class Profile extends React.Component {
   state = {
-    user: {},
+    user: [],
   };
 
 
@@ -15,39 +15,40 @@ class Profile extends React.Component {
     const uid = authRequests.currentUser();
     userRequests.getCurrentUser(uid)
       .then((user) => {
-        const aUser = user.data;
-        this.setState({ user: aUser });
+        this.setState({ user });
       });
   }
 
   render() {
+    const { user } = this.state;
+
     return (
       <Row className="myProfile">
         <Col>
           <img src={authRequests.userProfile().photoURL} alt="your profile"/>
-          <h2>{authRequests.userProfile().displayName}</h2>
-          <h2>Level 1</h2>
+          <h2>{user.username}</h2>
+          <h2>Level {user.userLevel}</h2>
         </Col>
         <Col>
           <div className="xpBar">
             <div className="text-center">Fitness</div>
-            <Progress value="1" max="5" />
+            <Progress value={user.fitnessXp} max="5" />
           </div>
           <div className="xpBar">
             <div className="text-center">Academic</div>
-            <Progress value="1" max="5" />
+            <Progress value={user.academicXp} max="5" />
           </div>
           <div className="xpBar">
             <div className="text-center">Social</div>
-            <Progress value="1" max="5" />
+            <Progress value={user.socialXp} max="5" />
           </div>
           <div className="xpBar">
             <div className="text-center">Home</div>
-            <Progress value="1" max="5" />
+            <Progress value={user.homeXp} max="5" />
           </div>
           <div className="xpBar">
             <div className="text-center">Creativity</div>
-            <Progress value="1" max="5" />
+            <Progress value={user.creativityXp} max="5" />
           </div>
         </Col>
       </Row>

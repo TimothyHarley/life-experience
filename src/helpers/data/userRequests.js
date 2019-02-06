@@ -21,7 +21,20 @@ const getAllUsers = () => new Promise((resolve, reject) => {
     });
 });
 
-const getCurrentUser = uid => axios.get(`${firebaseUrl}/users.json?orderBy="uid"&equalTo="${uid}"`);
+const getCurrentUser = uid => new Promise((resolve, reject) => {
+  axios.get(`${firebaseUrl}/users.json?orderBy="uid"&equalTo="${uid}"`)
+    .then((result) => {
+      let myUser;
+      Object.keys(result.data).forEach((key) => {
+        myUser = result.data[key];
+        myUser.dbKey = key;
+      });
+      resolve(myUser);
+    })
+    .catch((error) => {
+      reject(error);
+    });
+});
 
 export default {
   getAllUsers,
