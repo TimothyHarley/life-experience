@@ -5,18 +5,44 @@ import './profile.scss';
 import authRequests from '../../../helpers/data/authRequests';
 import userRequests from '../../../helpers/data/userRequests';
 
+const defaultUser = {
+  uid: '',
+  username: '',
+  userLevel: 1,
+  fitnessXp: 0,
+  academicXp: 0,
+  socialXp: 0,
+  homeXp: 0,
+  creativityXp: 0,
+};
+
 class Profile extends React.Component {
   state = {
-    user: [],
+    user: {},
+    newUser: defaultUser,
   };
 
-
-  componentDidMount() {
+  newUser = () => {
     const uid = authRequests.currentUser();
     userRequests.getCurrentUser(uid)
       .then((user) => {
-        this.setState({ user });
+        if (user === undefined) {
+          const userId = authRequests.userProfile();
+          const newUser = { ...this.state.newUser };
+          newUser.uid = userId.uid;
+          newUser.username = userId.displayName;
+          userRequests.createNewUser(newUser)
+            .then(() => {
+              this.setState({ user: newUser });
+            });
+        } else {
+          this.setState({ user });
+        }
       });
+  }
+
+  componentDidMount() {
+    this.newUser();
   }
 
   render() {

@@ -3,23 +3,7 @@ import apiKeys from '../apiKeys';
 
 const firebaseUrl = apiKeys.firebaseConfig.databaseURL;
 
-const getAllUsers = () => new Promise((resolve, reject) => {
-  axios.get(`${firebaseUrl}/users.json`)
-    .then((result) => {
-      const userObject = result.data;
-      const userArray = [];
-      if (userObject != null) {
-        Object.keys(userObject).forEach((userId) => {
-          userObject[userId].id = userId;
-          userArray.push(userObject[userId]);
-        });
-      }
-      resolve(userArray);
-    })
-    .catch((error) => {
-      reject(error);
-    });
-});
+const createNewUser = user => axios.post(`${firebaseUrl}/users.json`, user);
 
 const getCurrentUser = uid => new Promise((resolve, reject) => {
   axios.get(`${firebaseUrl}/users.json?orderBy="uid"&equalTo="${uid}"`)
@@ -37,6 +21,6 @@ const getCurrentUser = uid => new Promise((resolve, reject) => {
 });
 
 export default {
-  getAllUsers,
+  createNewUser,
   getCurrentUser,
 };
