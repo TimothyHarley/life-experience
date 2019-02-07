@@ -33,7 +33,7 @@ class Profile extends React.Component {
           newUser.username = userId.displayName;
           userRequests.createNewUser(newUser)
             .then(() => {
-              this.setState({ user: newUser });
+              this.setState({ user: newUser, newUser: defaultUser });
             });
         } else {
           this.setState({ user });

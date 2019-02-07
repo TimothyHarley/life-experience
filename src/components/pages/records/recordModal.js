@@ -16,6 +16,7 @@ import {
 import './recordModal.scss';
 import authRequests from '../../../helpers/data/authRequests';
 import recordRequests from '../../../helpers/data/recordRequests';
+import userRequests from '../../../helpers/data/userRequests';
 
 const defaultRecord = {
   uid: '',
@@ -25,9 +26,21 @@ const defaultRecord = {
   xpEarned: '',
 };
 
+// const defaultUser = {
+//   uid: '',
+//   username: '',
+//   userLevel: 1,
+//   fitnessXp: 1,
+//   academicXp: 1,
+//   socialXp: 1,
+//   homeXp: 1,
+//   creativityXp: 1,
+// }
+
 class RecordModal extends React.Component {
   state = {
     newRecord: defaultRecord,
+    userInfo: '',
   };
 
   formFieldStringState = (name, e) => {
@@ -50,6 +63,34 @@ class RecordModal extends React.Component {
     return (newRecord.xpEarned);
   }
 
+  changeUserInfo = () => {
+    const uid = authRequests.currentUser();
+    userRequests.getCurrentUser(uid)
+      .then((userInfo) => {
+        this.setState({ userInfo });
+        console.log(this.state.userInfo);
+      });
+    // const changes = this.state.userInfo;
+    // changes.userLevel = 2;
+    // changes.fitnessXp = 25;
+    // changes.academicXp = 25;
+    // changes.socialXp = 25;
+    // changes.homeXp = 25;
+    // changes.creativityXp = 25;
+    // console.log(changes);
+    // return changes;
+  }
+
+  updateUserXp = () => {
+    const changes = this.changeUserInfo();
+    const uid = authRequests.currentUser();
+    userRequests.getCurrentUser(uid)
+      .then((results) => {
+        const userId = results.dbKey;
+        userRequests.updateUser(changes, userId);
+      });
+  }
+
   formSubmit = (e) => {
     e.preventDefault();
     const { habit, onSubmit, toggle } = this.props;
@@ -58,6 +99,8 @@ class RecordModal extends React.Component {
     myRecord.habitId = habit.id;
     myRecord.timestamp = Date.now();
     myRecord.xpEarned = this.experience();
+    // this.updateUserXp();
+    this.changeUserInfo();
     onSubmit(myRecord);
     toggle();
   }
