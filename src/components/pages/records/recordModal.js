@@ -22,6 +22,7 @@ const defaultRecord = {
   habitId: '',
   timestamp: '',
   timeSpent: '',
+  xpEarned: '',
 };
 
 class RecordModal extends React.Component {
@@ -38,6 +39,17 @@ class RecordModal extends React.Component {
 
   recordChange = e => this.formFieldStringState('timeSpent', e);
 
+  experience = () => {
+    const { habit } = this.props;
+    const { newRecord } = this.state;
+    if (habit.isTimed) {
+      newRecord.xpEarned = (habit.xpValue) * (newRecord.timeSpent);
+    } else {
+      newRecord.xpEarned = habit.xpValue;
+    }
+    return (newRecord.xpEarned);
+  }
+
   formSubmit = (e) => {
     e.preventDefault();
     const { habit, onSubmit, toggle } = this.props;
@@ -45,6 +57,7 @@ class RecordModal extends React.Component {
     myRecord.uid = authRequests.currentUser();
     myRecord.habitId = habit.id;
     myRecord.timestamp = Date.now();
+    myRecord.xpEarned = this.experience();
     onSubmit(myRecord);
     toggle();
   }

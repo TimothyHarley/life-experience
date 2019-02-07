@@ -3,8 +3,6 @@ import apiKeys from '../apiKeys';
 
 const firebaseUrl = apiKeys.firebaseConfig.databaseURL;
 
-const createNewUser = user => axios.post(`${firebaseUrl}/users.json`, user);
-
 const getCurrentUser = uid => new Promise((resolve, reject) => {
   axios.get(`${firebaseUrl}/users.json?orderBy="uid"&equalTo="${uid}"`)
     .then((result) => {
@@ -20,7 +18,12 @@ const getCurrentUser = uid => new Promise((resolve, reject) => {
     });
 });
 
+const createNewUser = user => axios.post(`${firebaseUrl}/users.json`, user);
+
+const updateUser = (changes, userId) => axios.put(`${firebaseUrl}/users/${userId}.json`, changes);
+
 export default {
-  createNewUser,
   getCurrentUser,
+  createNewUser,
+  updateUser,
 };

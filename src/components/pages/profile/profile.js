@@ -58,23 +58,23 @@ class Profile extends React.Component {
         <Col>
           <div className="xpBar">
             <div className="text-center">Fitness</div>
-            <Progress value={user.fitnessXp} max="5" />
+            <Progress value={user.fitnessXp} max="50" />
           </div>
           <div className="xpBar">
             <div className="text-center">Academic</div>
-            <Progress value={user.academicXp} max="5" />
+            <Progress value={user.academicXp} max="50" />
           </div>
           <div className="xpBar">
             <div className="text-center">Social</div>
-            <Progress value={user.socialXp} max="5" />
+            <Progress value={user.socialXp} max="50" />
           </div>
           <div className="xpBar">
             <div className="text-center">Home</div>
-            <Progress value={user.homeXp} max="5" />
+            <Progress value={user.homeXp} max="50" />
           </div>
           <div className="xpBar">
             <div className="text-center">Creativity</div>
-            <Progress value={user.creativityXp} max="5" />
+            <Progress value={user.creativityXp} max="50" />
           </div>
         </Col>
       </Row>
