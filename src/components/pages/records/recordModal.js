@@ -26,17 +26,6 @@ const defaultRecord = {
   xpEarned: '',
 };
 
-// const defaultUser = {
-//   uid: '',
-//   username: '',
-//   userLevel: 1,
-//   fitnessXp: 1,
-//   academicXp: 1,
-//   socialXp: 1,
-//   homeXp: 1,
-//   creativityXp: 1,
-// }
-
 class RecordModal extends React.Component {
   state = {
     newRecord: defaultRecord,
@@ -68,25 +57,24 @@ class RecordModal extends React.Component {
     userRequests.getCurrentUser(uid)
       .then((userInfo) => {
         this.setState({ userInfo });
-        console.log(this.state.userInfo);
       });
-    // const changes = this.state.userInfo;
-    // changes.userLevel = 2;
-    // changes.fitnessXp = 25;
-    // changes.academicXp = 25;
-    // changes.socialXp = 25;
-    // changes.homeXp = 25;
-    // changes.creativityXp = 25;
-    // console.log(changes);
-    // return changes;
+    const changes = { ...this.state.userInfo };
+    changes.userLevel = 2;
+    changes.fitnessXp = 25;
+    changes.academicXp = 25;
+    changes.socialXp = 25;
+    changes.homeXp = 25;
+    changes.creativityXp = 25;
+    return changes;
   }
 
   updateUserXp = () => {
-    const changes = this.changeUserInfo();
     const uid = authRequests.currentUser();
     userRequests.getCurrentUser(uid)
       .then((results) => {
         const userId = results.dbKey;
+        const changes = this.changeUserInfo();
+        console.log(changes);
         userRequests.updateUser(changes, userId);
       });
   }
@@ -99,8 +87,7 @@ class RecordModal extends React.Component {
     myRecord.habitId = habit.id;
     myRecord.timestamp = Date.now();
     myRecord.xpEarned = this.experience();
-    // this.updateUserXp();
-    this.changeUserInfo();
+    this.updateUserXp();
     onSubmit(myRecord);
     toggle();
   }
