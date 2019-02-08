@@ -26,11 +26,13 @@ const defaultRecord = {
   xpEarned: '',
 };
 
+
 class RecordModal extends React.Component {
   state = {
     newRecord: defaultRecord,
-    userInfo: '',
+    userInfo: {},
   };
+
 
   formFieldStringState = (name, e) => {
     e.preventDefault();
@@ -52,19 +54,22 @@ class RecordModal extends React.Component {
     return (newRecord.xpEarned);
   }
 
-  changeUserInfo = () => {
+  setUserInfo = () => {
     const uid = authRequests.currentUser();
     userRequests.getCurrentUser(uid)
       .then((userInfo) => {
         this.setState({ userInfo });
       });
+  }
+
+  changeUserInfo = () => {
     const changes = { ...this.state.userInfo };
-    changes.userLevel = 2;
-    changes.fitnessXp = 25;
-    changes.academicXp = 25;
-    changes.socialXp = 25;
-    changes.homeXp = 25;
-    changes.creativityXp = 25;
+    changes.userLevel = 1;
+    changes.fitnessXp = 30;
+    changes.academicXp = 20;
+    changes.socialXp = 20;
+    changes.homeXp = 20;
+    changes.creativityXp = 20;
     return changes;
   }
 
@@ -74,7 +79,6 @@ class RecordModal extends React.Component {
       .then((results) => {
         const userId = results.dbKey;
         const changes = this.changeUserInfo();
-        console.log(changes);
         userRequests.updateUser(changes, userId);
       });
   }
@@ -90,6 +94,10 @@ class RecordModal extends React.Component {
     this.updateUserXp();
     onSubmit(myRecord);
     toggle();
+  }
+
+  componentDidMount() {
+    this.setUserInfo();
   }
 
   componentDidUpdate(prevProps) {
