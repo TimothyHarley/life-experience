@@ -5,49 +5,76 @@ import './profile.scss';
 import authRequests from '../../../helpers/data/authRequests';
 import userRequests from '../../../helpers/data/userRequests';
 
+const defaultUser = {
+  uid: '',
+  username: '',
+  userLevel: 1,
+  fitnessXp: 0,
+  academicXp: 0,
+  socialXp: 0,
+  homeXp: 0,
+  creativityXp: 0,
+};
+
 class Profile extends React.Component {
   state = {
     user: {},
+    newUser: defaultUser,
   };
 
-
-  componentDidMount() {
+  newUser = () => {
     const uid = authRequests.currentUser();
     userRequests.getCurrentUser(uid)
       .then((user) => {
-        const aUser = user.data;
-        this.setState({ user: aUser });
+        if (user === undefined) {
+          const userId = authRequests.userProfile();
+          const newUser = { ...this.state.newUser };
+          newUser.uid = userId.uid;
+          newUser.username = userId.displayName;
+          userRequests.createNewUser(newUser)
+            .then(() => {
+              this.setState({ user: newUser, newUser: defaultUser });
+            });
+        } else {
+          this.setState({ user });
+        }
       });
   }
 
+  componentDidMount() {
+    this.newUser();
+  }
+
   render() {
+    const { user } = this.state;
+
     return (
       <Row className="myProfile">
         <Col>
           <img src={authRequests.userProfile().photoURL} alt="your profile"/>
-          <h2>{authRequests.userProfile().displayName}</h2>
-          <h2>Level 1</h2>
+          <h2>{user.username}</h2>
+          <h2>Level {user.userLevel}</h2>
         </Col>
         <Col>
           <div className="xpBar">
             <div className="text-center">Fitness</div>
-            <Progress value="1" max="5" />
+            <Progress value={user.fitnessXp} max="50" />
           </div>
           <div className="xpBar">
             <div className="text-center">Academic</div>
-            <Progress value="1" max="5" />
+            <Progress value={user.academicXp} max="50" />
           </div>
           <div className="xpBar">
             <div className="text-center">Social</div>
-            <Progress value="1" max="5" />
+            <Progress value={user.socialXp} max="50" />
           </div>
           <div className="xpBar">
             <div className="text-center">Home</div>
-            <Progress value="1" max="5" />
+            <Progress value={user.homeXp} max="50" />
           </div>
           <div className="xpBar">
             <div className="text-center">Creativity</div>
-            <Progress value="1" max="5" />
+            <Progress value={user.creativityXp} max="50" />
           </div>
         </Col>
       </Row>
