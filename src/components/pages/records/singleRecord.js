@@ -50,6 +50,7 @@ class SingleRecord extends React.Component {
     recordRequests.updateRecord(newRecord, editId)
       .then(() => {
         loadRecords();
+        recordRequests.updateUserXp();
       })
       .catch(err => console.error('error with edit', err));
   }

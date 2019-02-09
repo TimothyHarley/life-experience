@@ -36,7 +36,9 @@ class Habits extends React.Component {
 
   formSubmitEvent = (newRecord) => {
     recordRequests.createRecord(newRecord)
-      .then()
+      .then(() => {
+        recordRequests.updateUserXp();
+      })
       .catch(err => console.error('error with posting record', err));
   }
 
