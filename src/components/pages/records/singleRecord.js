@@ -4,6 +4,8 @@ import './singleRecord.scss';
 import RecordModal from './recordModal';
 import habitRequests from '../../../helpers/data/habitRequests';
 import recordRequests from '../../../helpers/data/recordRequests';
+import authRequests from '../../../helpers/data/authRequests';
+import userRequests from '../../../helpers/data/userRequests';
 
 class SingleRecord extends React.Component {
   state = {
@@ -11,6 +13,13 @@ class SingleRecord extends React.Component {
     isEditing: false,
     editId: '-1',
     habit: {},
+    xpRecords: [],
+    userInfo: {},
+  }
+
+  componentDidMount() {
+    this.xpRecords();
+    this.userInfo();
   }
 
   toggle = () => {
@@ -25,6 +34,10 @@ class SingleRecord extends React.Component {
     e.preventDefault();
     const { deleteSingleRecord, record } = this.props;
     deleteSingleRecord(record.id);
+    this.xpRecords()
+      .then(() => {
+        this.updateUserXp();
+      });
   }
 
   editEvent = (e) => {
@@ -50,9 +63,85 @@ class SingleRecord extends React.Component {
     recordRequests.updateRecord(newRecord, editId)
       .then(() => {
         loadRecords();
+        this.xpRecords()
+          .then(() => {
+            this.updateUserXp();
+          });
       })
       .catch(err => console.error('error with edit', err));
   }
+
+  xpRecords = () => recordRequests.getAllRecordsWithCategories(`${authRequests.currentUser()}`)
+    .then((xpRecords) => {
+      this.setState({ xpRecords });
+    })
+
+  userInfo = () => userRequests.getCurrentUser(`${authRequests.currentUser()}`)
+    .then((userInfo) => {
+      this.setState({ userInfo });
+    })
+
+  sumOfXp = (typeXp) => {
+    const allXp = typeXp.map(xp => xp.xpEarned);
+    const totalXp = allXp.reduce((a, b) => a + b, 0);
+    return (totalXp);
+  };
+
+  calculateFitnessXp = () => {
+    const { xpRecords } = this.state;
+    const allFitness = xpRecords.filter(xpRecord => xpRecord.category === 'fitness');
+    const fitnessXp = this.sumOfXp(allFitness);
+    return fitnessXp; // maybe try to make all these one function
+  };
+
+  calculateAcademicXp = () => {
+    const { xpRecords } = this.state;
+    const allAcademic = xpRecords.filter(xpRecord => xpRecord.category === 'academic');
+    const academicXp = this.sumOfXp(allAcademic);
+    return academicXp;
+  };
+
+  calculateSocialXp = () => {
+    const { xpRecords } = this.state;
+    const allSocial = xpRecords.filter(xpRecord => xpRecord.category === 'social');
+    const socialXp = this.sumOfXp(allSocial);
+    return socialXp;
+  };
+
+  calculateHomelXp = () => {
+    const { xpRecords } = this.state;
+    const allSHome = xpRecords.filter(xpRecord => xpRecord.category === 'home');
+    const homeXp = this.sumOfXp(allSHome);
+    return homeXp;
+  };
+
+  calculateCreativityXp = () => {
+    const { xpRecords } = this.state;
+    const allCreativity = xpRecords.filter(xpRecord => xpRecord.category === 'creativity');
+    const creativityXp = this.sumOfXp(allCreativity);
+    return creativityXp;
+  };
+
+  changeUserInfo = () => {
+    const changes = { ...this.state.userInfo };
+    changes.userLevel = 2;
+    changes.fitnessXp = this.calculateFitnessXp();
+    changes.academicXp = this.calculateAcademicXp();
+    changes.socialXp = this.calculateSocialXp();
+    changes.homeXp = this.calculateHomelXp();
+    changes.creativityXp = this.calculateCreativityXp();
+    return changes;
+  };
+
+  updateUserXp = () => {
+    const uid = authRequests.currentUser();
+    userRequests.getCurrentUser(uid)
+      .then((results) => {
+        const userId = results.dbKey;
+        const changes = this.changeUserInfo();
+        userRequests.updateUser(changes, userId);
+      });
+  };
 
   render() {
     const { record } = this.props;
