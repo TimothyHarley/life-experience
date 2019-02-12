@@ -35,6 +35,7 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
 class App extends React.Component {
   state = {
     authed: false,
+    pendingUser: true,
   }
 
   componentDidMount() {
@@ -43,10 +44,12 @@ class App extends React.Component {
       if (user) {
         this.setState({
           authed: true,
+          pendingUser: false,
         });
       } else {
         this.setState({
           authed: false,
+          pendingUser: false,
         });
       }
     });
@@ -62,6 +65,9 @@ class App extends React.Component {
       this.setState({ authed: false });
     };
 
+    if (this.state.pendingUser) {
+      return (null);
+    }
     return (
       <div className="App">
         <BrowserRouter>

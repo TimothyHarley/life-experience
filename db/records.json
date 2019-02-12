@@ -3,66 +3,70 @@
     "uid": "8SsxHOipltZjWgxMHpyqJuCbWlt2",
     "habitId": "habit1",
     "timestamp": 1547924200716,
-    "timeSpent": 30
+    "timeSpent": 30,
+    "xpEarned": 0
   },
   "record2": {
     "uid": "8SsxHOipltZjWgxMHpyqJuCbWlt2",
     "habitId": "habit7",
     "timestamp": 1547914200716,
-    "timeSpent": 45
+    "timeSpent": 45,
+    "xpEarned": 0
   },
   "record3": {
-    "uid": "54321",
-    "habitId": "habit6",
-    "timestamp": 1547924200800,
-    "timeSpent": 21
+    "uid": "8SsxHOipltZjWgxMHpyqJuCbWlt2",
+    "habitId": "habit13",
+    "timestamp": 1548937654321,
+    "timeSpent": 36,
+    "xpEarned": 0
   },
   "record4": {
     "uid": "8SsxHOipltZjWgxMHpyqJuCbWlt2",
     "habitId": "habit12",
     "timestamp": 1547925012344,
-    "timeSpent": 50
+    "timeSpent": 50,
+    "xpEarned": 0
   },
   "record5": {
     "uid": "8SsxHOipltZjWgxMHpyqJuCbWlt2",
     "habitId": "habit3",
     "timestamp": 1547925092341,
-    "timeSpent": 18
+    "timeSpent": 18,
+    "xpEarned": 0
   },
   "record6": {
     "uid": "8SsxHOipltZjWgxMHpyqJuCbWlt2",
     "habitId": "habit6",
     "timestamp": 1548021234567,
-    "timeSpent": 5
+    "timeSpent": 5,
+    "xpEarned": 0
   },
   "record7": {
     "uid": "8SsxHOipltZjWgxMHpyqJuCbWlt2",
     "habitId": "habit9",
     "timestamp": 1547937654321,
-    "timeSpent": 24
+    "timeSpent": 24,
+    "xpEarned": 0
   },
   "record8": {
     "uid": "8SsxHOipltZjWgxMHpyqJuCbWlt2",
     "habitId": "habit17",
     "timestamp": 1547957654321,
-    "timeSpent": 21
+    "timeSpent": 21,
+    "xpEarned": 0
   },
   "record9": {
     "uid": "8SsxHOipltZjWgxMHpyqJuCbWlt2",
     "habitId": "habit20",
     "timestamp": 1547938654321,
-    "timeSpent": 12
+    "timeSpent": 12,
+    "xpEarned": 0
   },
   "record10": {
     "uid": "8SsxHOipltZjWgxMHpyqJuCbWlt2",
     "habitId": "habit14",
     "timestamp": 1557939654321,
-    "timeSpent": 18
-  },
-  "record11": {
-    "uid": "8SsxHOipltZjWgxMHpyqJuCbWlt2",
-    "habitId": "habit13",
-    "timestamp": 1548937654321,
-    "timeSpent": 36
+    "timeSpent": 18,
+    "xpEarned": 0
   }
 }

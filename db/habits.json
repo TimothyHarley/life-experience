@@ -2,101 +2,271 @@
   "habit1": {
     "category": "fitness",
     "description": "Went for a run",
-    "isTimed": true
+    "isTimed": true,
+    "xpValue": 1
   },
   "habit2": {
     "category": "fitness",
     "description": "Went swimming",
-    "isTimed": true
+    "isTimed": true,
+    "xpValue": 1
   },
   "habit3": {
     "category": "fitness",
     "description": "Worked Out",
-    "isTimed": true
+    "isTimed": true,
+    "xpValue": 1
   },
   "habit4": {
     "category": "fitness",
     "description": "Woke up early",
-    "isTimed": false
+    "isTimed": false,
+    "xpValue": 10
   },
   "habit5": {
     "category": "academic",
     "description": "Read a book",
-    "isTimed": true
+    "isTimed": true,
+    "xpValue": 1
   },
   "habit6": {
     "category": "academic",
     "description": "Watched a documentary",
-    "isTimed": true
+    "isTimed": true,
+    "xpValue": 1
   },
   "habit7": {
     "category": "academic",
     "description": "Did Homework or Studied",
-    "isTimed": true
+    "isTimed": true,
+    "xpValue": 1
   },
   "habit8": {
     "category": "academic",
     "description": "Practiced an instrument",
-    "isTimed": true
+    "isTimed": true,
+    "xpValue": 1
   },
   "habit9": {
     "category": "social",
     "description": "Called family or a friend that I don't live with",
-    "isTimed": true
+    "isTimed": true,
+    "xpValue": 1
   },
   "habit10": {
     "category": "social",
     "description": "Hosted a party",
-    "isTimed": true
+    "isTimed": true,
+    "xpValue": 1
   },
   "habit11": {
     "category": "social",
-    "description": "Made or Kept plans with someone",
-    "isTimed": false
+    "description": "Made and Kept plans with someone",
+    "isTimed": false,
+    "xpValue": 10
   },
   "habit12": {
     "category": "social",
     "description": "Played a game with someone",
-    "isTimed": true
+    "isTimed": true,
+    "xpValue": 1
   },
   "habit13": {
     "category": "home",
     "description": "Did the dishes",
-    "isTimed": true
+    "isTimed": true,
+    "xpValue": 1
   },
   "habit14": {
     "category": "home",
     "description": "Vaccuumed",
-    "isTimed": true
+    "isTimed": true,
+    "xpValue": 1
   },
   "habit15": {
     "category": "home",
     "description": "Finished a load of laundry",
-    "isTimed": false
+    "isTimed": false,
+    "xpValue": 10
   },
   "habit16": {
     "category": "home",
     "description": "Mopped the floors",
-    "isTimed": true
+    "isTimed": true,
+    "xpValue": 1
   },
   "habit17": {
     "category": "creativity",
     "description": "Wrote or Worked on a story",
-    "isTimed": true
+    "isTimed": true,
+    "xpValue": 1
   },
   "habit18": {
     "category": "creativity",
     "description": "Journaled",
-    "isTimed": true
+    "isTimed": true,
+    "xpValue": 1
   },
   "habit19": {
     "category": "creativity",
     "description": "Painted or Drew something",
-    "isTimed": true
+    "isTimed": true,
+    "xpValue": 1
   },
   "habit20": {
     "category": "creativity",
     "description": "solved a puzzle",
-    "isTimed": false
+    "isTimed": false,
+    "xpValue": 10
+  },
+  "habit21": {
+    "category": "fitness",
+    "description": "Ate a healthy meal",
+    "isTimed": false,
+    "xpValue": 10
+  },
+  "habit22": {
+    "category": "fitness",
+    "description": "Did Yoga",
+    "isTimed": true,
+    "xpValue": 1
+  },
+  "habit23": {
+    "category": "fitness",
+    "description": "Rode a bicycle",
+    "isTimed": true,
+    "xpValue": 1
+  },
+  "habit24": {
+    "category": "fitness",
+    "description": "Went for a walk",
+    "isTimed": true,
+    "xpValue": 1
+  },
+  "habit25": {
+    "category": "fitness",
+    "description": "Hiked a trail",
+    "isTimed": true,
+    "xpValue": 1
+  },
+  "habit26": {
+    "category": "academic",
+    "description": "Read a news article",
+    "isTimed": true,
+    "xpValue": 1
+  },
+  "habit27": {
+    "category": "academic",
+    "description": "Watched a tutorial",
+    "isTimed": true,
+    "xpValue": 1
+  },
+  "habit28": {
+    "category": "academic",
+    "description": "Got an 'A'",
+    "isTimed": false,
+    "xpValue": 10
+  },
+  "habit29": {
+    "category": "academic",
+    "description": "Wrote a report or research paper",
+    "isTimed": true,
+    "xpValue": 1
+  },
+  "habit30": {
+    "category": "academic",
+    "description": "Had an intelectual conversation",
+    "isTimed": false,
+    "xpValue": 10
+  },
+  "habit31": {
+    "category": "social",
+    "description": "Helped someone move",
+    "isTimed": true,
+    "xpValue": 1
+  },
+  "habit32": {
+    "category": "social",
+    "description": "Had lunch with a new colleague",
+    "isTimed": true,
+    "xpValue": 1
+  },
+  "habit33": {
+    "category": "social",
+    "description": "Brought the beer",
+    "isTimed": false,
+    "xpValue": 10
+  },
+  "habit34": {
+    "category": "social",
+    "description": "Brought snacks",
+    "isTimed": true,
+    "xpValue": 1
+  },
+  "habit35": {
+    "category": "social",
+    "description": "Repaid a personal dept",
+    "isTimed": false,
+    "xpValue": 10
+  },
+  "habit36": {
+    "category": "home",
+    "description": "Took out the garbage",
+    "isTimed": false,
+    "xpValue": 10
+  },
+  "habit37": {
+    "category": "home",
+    "description": "Donated old belongings",
+    "isTimed": true,
+    "xpValue": 1
+  },
+  "habit38": {
+    "category": "home",
+    "description": "Orginized desk or closet",
+    "isTimed": true,
+    "xpValue": 1
+  },
+  "habit39": {
+    "category": "home",
+    "description": "Paid the bills",
+    "isTimed": false,
+    "xpValue": 10
+  },
+  "habit40": {
+    "category": "home",
+    "description": "Fed and walked pets",
+    "isTimed": true,
+    "xpValue": 1
+  },
+  "habit41": {
+    "category": "creativity",
+    "description": "Crafted something",
+    "isTimed": true,
+    "xpValue": 1
+  },
+  "habit42": {
+    "category": "creativity",
+    "description": "Played a non-competitive video game",
+    "isTimed": true,
+    "xpValue": 1
+  },
+  "habit43": {
+    "category": "creativity",
+    "description": "Took a picture that I'm pround of",
+    "isTimed": false,
+    "xpValue": 10
+  },
+  "habit44": {
+    "category": "creativity",
+    "description": "Cooked a new recipie",
+    "isTimed": true,
+    "xpValue": 1
+  },
+  "habit45": {
+    "category": "creativity",
+    "description": "Planned my week",
+    "isTimed": true,
+    "xpValue": 1
   }
 }
