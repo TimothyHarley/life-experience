@@ -45,6 +45,13 @@ class Profile extends React.Component {
     this.newUser();
   }
 
+  componentDidUpdate() {
+    userRequests.getCurrentUser(`${authRequests.currentUser()}`)
+      .then((user) => {
+        this.setState({ user });
+      });
+  }
+
   render() {
     const { user } = this.state;
 

@@ -22,14 +22,6 @@ class Habits extends React.Component {
     userInfo: {},
   };
 
-  toggle(tab) {
-    if (this.state.activeTab !== tab) {
-      this.setState({
-        activeTab: tab,
-      });
-    }
-  }
-
   componentDidMount() {
     this.xpRecords();
     this.userInfo();
@@ -37,6 +29,14 @@ class Habits extends React.Component {
       .then((habits) => {
         this.setState({ habits });
       });
+  }
+
+  toggle(tab) {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab,
+      });
+    }
   }
 
   xpRecords = () => recordRequests.getAllRecordsWithCategories(`${authRequests.currentUser()}`)
