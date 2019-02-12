@@ -46,11 +46,11 @@ class SingleRecord extends React.Component {
 
   formSubmitEvent = (newRecord) => {
     const { editId } = this.state;
-    const { loadRecords } = this.props;
+    const { loadRecords, updateUserXp } = this.props;
     recordRequests.updateRecord(newRecord, editId)
       .then(() => {
         loadRecords();
-        recordRequests.updateUserXp();
+        updateUserXp();
       })
       .catch(err => console.error('error with edit', err));
   }
