@@ -43,17 +43,47 @@ class Profile extends React.Component {
 
   componentDidMount() {
     this.newUser();
-  }
-
-  componentDidUpdate() {
     userRequests.getCurrentUser(`${authRequests.currentUser()}`)
       .then((user) => {
         this.setState({ user });
       });
   }
 
+  levelUp() {
+    const { user } = this.state;
+    if (
+      user.fitnessXp % 200 === 0
+      || user.academicXp % 200 === 0
+      || user.socialXp % 200 === 0
+      || user.homeXp % 200 === 0
+      || user.creativityXp % 200 === 0
+    ) {
+      console.log('level up!');
+      this.updateLevel();
+    }
+  }
+
+  updateLevel() {
+    const { user } = this.state;
+    const changes = { ...this.state.user };
+    changes.userLevel += 1;
+    userRequests.updateUser(changes, user.dbKey);
+  }
+
   render() {
     const { user } = this.state;
+
+    const categoryXp = (category) => {
+      const currentXp = category - ((user.userLevel - 1) * 200);
+      return currentXp;
+    };
+
+    const fitnessXp = categoryXp(user.fitnessXp);
+    const academicXp = categoryXp(user.academicXp);
+    const socialXp = categoryXp(user.socialXp);
+    const homeXp = categoryXp(user.homeXp);
+    const creativityXp = categoryXp(user.creativityXp);
+
 
     return (
       <Row className="myProfile">
@@ -65,23 +95,23 @@ class Profile extends React.Component {
         <Col>
           <div className="xpBar">
             <div className="text-center">Fitness</div>
-            <Progress value={user.fitnessXp} max="50" />
+            <Progress value={fitnessXp} max="200" />
           </div>
           <div className="xpBar">
             <div className="text-center">Academic</div>
-            <Progress value={user.academicXp} max="50" />
+            <Progress value={academicXp} max="200" />
           </div>
           <div className="xpBar">
             <div className="text-center">Social</div>
-            <Progress value={user.socialXp} max="50" />
+            <Progress value={socialXp} max="200" />
           </div>
           <div className="xpBar">
             <div className="text-center">Home</div>
-            <Progress value={user.homeXp} max="50" />
+            <Progress value={homeXp} max="200" />
           </div>
           <div className="xpBar">
             <div className="text-center">Creativity</div>
-            <Progress value={user.creativityXp} max="50" />
+            <Progress value={creativityXp} max="200" />
           </div>
         </Col>
       </Row>
