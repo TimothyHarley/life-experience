@@ -66,18 +66,18 @@ class App extends React.Component {
       var posY2 = 0;
       var posY3 = 0;
       setInterval(function(){
-          if (posY1 <= -900) posY1 = 0;
-          if (posY2 <= -900) posY2 = 0;
-          if (posY3 <= -1200) posY3 = 0;
-          posY1 -= 1;
-          posY2 -= 2;
-          posY3 -= 3;
-          $('.crystal_01').css({ backgroundPosition: '0' + posY1 + 'px' });
-          $('.crystal_02').css({ backgroundPosition: '0' + posY2 + 'px' });
-          $('.crystal_03').css({ backgroundPosition: '0' + posY3 + 'px' });
-      },50);
+        if (posY1 <= -900) posY1 = 0;
+        if (posY2 <= -900) posY2 = 0;
+        if (posY3 <= -1200) posY3 = 0;
+        posY1 -= 1;
+        posY2 -= 2;
+        posY3 -= 3;
+        $('.crystal_01').css({ backgroundPosition: '0' + posY1 + 'px' });
+        $('.crystal_02').css({ backgroundPosition: '0' + posY2 + 'px' });
+        $('.crystal_03').css({ backgroundPosition: '0' + posY3 + 'px' });
+      }, 50);
       $(window).scroll(function () {});
-  });
+    });
 
     const logoutClickEvent = () => {
       authRequests.logoutUser();
@@ -89,29 +89,27 @@ class App extends React.Component {
     }
     return (
       <div className="App">
-        <body>
-          <div id="crystals">
-            <div class="crystal_01"></div>
-            <div class="crystal_02"></div>
-            <div class="crystal_03"></div>
-          </div>
-          <BrowserRouter>
-            <React.Fragment>
-              <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
-              <div className="container">
-                <div className="mt-5">
-                  <Switch>
-                    <PrivateRoute path='/' exact component={Profile} authed={this.state.authed} />
-                    <PrivateRoute path='/home' component={Profile} authed={this.state.authed} />
-                    <PrivateRoute path='/habits' component={Habits} authed={this.state.authed} />
-                    <PrivateRoute path='/records' component={Records} authed={this.state.authed} />
-                    <PublicRoute path='/auth' component={Auth} authed={this.state.authed} />
-                  </Switch>
-                </div>
+        <div id="crystals">
+          <div className="crystal_01"></div>
+          <div className="crystal_02"></div>
+          <div className="crystal_03"></div>
+        </div>
+        <BrowserRouter>
+          <React.Fragment>
+            <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
+            <div className="container">
+              <div className="mt-5">
+                <Switch>
+                  <PrivateRoute path='/' exact component={Profile} authed={this.state.authed} />
+                  <PrivateRoute path='/home' component={Profile} authed={this.state.authed} />
+                  <PrivateRoute path='/habits' component={Habits} authed={this.state.authed} />
+                  <PrivateRoute path='/records' component={Records} authed={this.state.authed} />
+                  <PublicRoute path='/auth' component={Auth} authed={this.state.authed} />
+                </Switch>
               </div>
-            </React.Fragment>
-          </BrowserRouter>
-        </body>
+            </div>
+          </React.Fragment>
+        </BrowserRouter>
       </div>
     );
   }

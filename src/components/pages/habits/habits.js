@@ -150,7 +150,7 @@ class Habits extends React.Component {
       <div className='habits'>
         <div>
           <Nav tabs>
-            <NavItem>
+            <NavItem className="tabby">
               <NavLink
                 className={classnames({ active: this.state.activeTab === 'fitness' })}
                 onClick={() => { this.toggle('fitness'); }}
@@ -158,7 +158,7 @@ class Habits extends React.Component {
                 Fitness
               </NavLink>
             </NavItem>
-            <NavItem>
+            <NavItem className="tabby">
               <NavLink
                 className={classnames({ active: this.state.activeTab === 'academic' })}
                 onClick={() => { this.toggle('academic'); }}
@@ -166,7 +166,7 @@ class Habits extends React.Component {
                 Academic
               </NavLink>
             </NavItem>
-            <NavItem>
+            <NavItem className="tabby">
               <NavLink
                 className={classnames({ active: this.state.activeTab === 'social' })}
                 onClick={() => { this.toggle('social'); }}
@@ -174,7 +174,7 @@ class Habits extends React.Component {
                 Social
               </NavLink>
             </NavItem>
-            <NavItem>
+            <NavItem className="tabby">
               <NavLink
                 className={classnames({ active: this.state.activeTab === 'home' })}
                 onClick={() => { this.toggle('home'); }}
@@ -182,7 +182,7 @@ class Habits extends React.Component {
                 Home
               </NavLink>
             </NavItem>
-            <NavItem>
+            <NavItem className="tabby">
               <NavLink
                 className={classnames({ active: this.state.activeTab === 'creativity' })}
                 onClick={() => { this.toggle('creativity'); }}

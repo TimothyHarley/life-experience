@@ -1,8 +1,12 @@
 .habitCard {
   max-width: 300px;
+  max-height: 130px;
+  margin: 20px;
+  margin-top: 0px;
   .habitButton {
     cursor: pointer;
-    padding: inherit;
-    border-radius: inherit;
+    max-width: 300px;
+    min-height: 120px;
+    margin-left: -20px;
   }
 }
