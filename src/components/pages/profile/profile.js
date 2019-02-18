@@ -43,17 +43,116 @@ class Profile extends React.Component {
 
   componentDidMount() {
     this.newUser();
-  }
-
-  componentDidUpdate() {
     userRequests.getCurrentUser(`${authRequests.currentUser()}`)
       .then((user) => {
         this.setState({ user });
       });
   }
 
+  componentDidUpdate() {
+    this.levelUpFitness();
+    this.levelUpAcademic();
+    this.levelUpSocial();
+    this.levelUpHome();
+    this.levelUpCreativity();
+  }
+
+  levelUpFitness() {
+    const { user } = this.state;
+    const xpCap = 200;
+    if (
+      user.fitnessXp > (xpCap * user.userLevel)
+    ) {
+      this.updateLevel();
+    }
+  }
+
+  levelUpAcademic() {
+    const { user } = this.state;
+    const xpCap = 200;
+    if (
+      user.academicXp > (xpCap * user.userLevel)
+    ) {
+      this.updateLevel();
+    }
+  }
+
+  levelUpSocial() {
+    const { user } = this.state;
+    const xpCap = 200;
+    if (
+      user.socialXp > (xpCap * user.userLevel)
+    ) {
+      this.updateLevel();
+    }
+  }
+
+  levelUpHome() {
+    const { user } = this.state;
+    const xpCap = 200;
+    if (
+      user.homeXp > (xpCap * user.userLevel)
+    ) {
+      this.updateLevel();
+    }
+  }
+
+  levelUpCreativity() {
+    const { user } = this.state;
+    const xpCap = 200;
+    if (
+      user.creativityXp > (xpCap * user.userLevel)
+    ) {
+      this.updateLevel();
+    }
+  }
+
+  updateLevel() {
+    const { user } = this.state;
+    const changes = { ...this.state.user };
+    changes.userLevel += 1;
+    userRequests.updateUser(changes, user.dbKey);
+    userRequests.getCurrentUser(`${authRequests.currentUser()}`)
+      .then((data) => {
+        this.setState({ user: data });
+      });
+  }
+
   render() {
     const { user } = this.state;
+
+    const categoryXp = (category) => {
+      let currentXp = category;
+      if (category > 2000) {
+        currentXp = (category - 2000);
+      } else if (category > 1800) {
+        currentXp = (category - 1800);
+      } else if (category > 1600) {
+        currentXp = (category - 1600);
+      } else if (category > 1400) {
+        currentXp = (category - 1400);
+      } else if (category > 1200) {
+        currentXp = (category - 1200);
+      } else if (category > 1000) {
+        currentXp = (category - 1000);
+      } else if (category > 800) {
+        currentXp = (category - 800);
+      } else if (category > 600) {
+        currentXp = (category - 600);
+      } else if (category > 400) {
+        currentXp = (category - 400);
+      } else if (category > 200) {
+        currentXp = (category - 200);
+      }
+      return currentXp;
+    };
+
+    const fitnessXp = categoryXp(user.fitnessXp);
+    const academicXp = categoryXp(user.academicXp);
+    const socialXp = categoryXp(user.socialXp);
+    const homeXp = categoryXp(user.homeXp);
+    const creativityXp = categoryXp(user.creativityXp);
+
 
     return (
       <Row className="myProfile">
@@ -65,23 +164,23 @@ class Profile extends React.Component {
         <Col>
           <div className="xpBar">
             <div className="text-center">Fitness</div>
-            <Progress value={user.fitnessXp} max="50" />
+            <Progress value={fitnessXp} max="200" />
           </div>
           <div className="xpBar">
             <div className="text-center">Academic</div>
-            <Progress value={user.academicXp} max="50" />
+            <Progress value={academicXp} max="200" />
           </div>
           <div className="xpBar">
             <div className="text-center">Social</div>
-            <Progress value={user.socialXp} max="50" />
+            <Progress value={socialXp} max="200" />
           </div>
           <div className="xpBar">
             <div className="text-center">Home</div>
-            <Progress value={user.homeXp} max="50" />
+            <Progress value={homeXp} max="200" />
           </div>
           <div className="xpBar">
             <div className="text-center">Creativity</div>
-            <Progress value={user.creativityXp} max="50" />
+            <Progress value={creativityXp} max="200" />
           </div>
         </Col>
       </Row>

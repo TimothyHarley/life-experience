@@ -92,7 +92,7 @@ class Habits extends React.Component {
 
   changeUserInfo = () => {
     const changes = { ...this.state.userInfo };
-    changes.userLevel = 2;
+    changes.userLevel = 1;
     changes.fitnessXp = this.calculateFitnessXp();
     changes.academicXp = this.calculateAcademicXp();
     changes.socialXp = this.calculateSocialXp();
