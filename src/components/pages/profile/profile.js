@@ -157,7 +157,7 @@ class Profile extends React.Component {
     return (
       <Row className="myProfile">
         <Col>
-          <img src={authRequests.userProfile().photoURL} alt="your profile"/>
+          <img className="profile-pic" src={authRequests.userProfile().photoURL} alt="your profile"/>
           <h2>{user.username}</h2>
           <h2>Level {user.userLevel}</h2>
         </Col>

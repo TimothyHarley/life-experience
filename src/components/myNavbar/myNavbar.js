@@ -42,7 +42,10 @@ class MyNavbar extends React.Component {
 
     return (
       <div className="my-navbar">
-        <Navbar color="dark" dark expand="md">
+        <Navbar
+        // color="dark"
+        dark expand="md"
+        >
           <NavbarBrand href="/">Life Experience</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
