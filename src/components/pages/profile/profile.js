@@ -49,16 +49,60 @@ class Profile extends React.Component {
       });
   }
 
-  levelUp() {
+  componentDidUpdate() {
+    this.levelUpFitness();
+    this.levelUpAcademic();
+    this.levelUpSocial();
+    this.levelUpHome();
+    this.levelUpCreativity();
+  }
+
+  levelUpFitness() {
     const { user } = this.state;
+    const xpCap = 200;
     if (
-      user.fitnessXp % 200 === 0
-      || user.academicXp % 200 === 0
-      || user.socialXp % 200 === 0
-      || user.homeXp % 200 === 0
-      || user.creativityXp % 200 === 0
+      user.fitnessXp > (xpCap * user.userLevel)
     ) {
-      console.log('level up!');
+      this.updateLevel();
+    }
+  }
+
+  levelUpAcademic() {
+    const { user } = this.state;
+    const xpCap = 200;
+    if (
+      user.academicXp > (xpCap * user.userLevel)
+    ) {
+      this.updateLevel();
+    }
+  }
+
+  levelUpSocial() {
+    const { user } = this.state;
+    const xpCap = 200;
+    if (
+      user.socialXp > (xpCap * user.userLevel)
+    ) {
+      this.updateLevel();
+    }
+  }
+
+  levelUpHome() {
+    const { user } = this.state;
+    const xpCap = 200;
+    if (
+      user.homeXp > (xpCap * user.userLevel)
+    ) {
+      this.updateLevel();
+    }
+  }
+
+  levelUpCreativity() {
+    const { user } = this.state;
+    const xpCap = 200;
+    if (
+      user.creativityXp > (xpCap * user.userLevel)
+    ) {
       this.updateLevel();
     }
   }
@@ -68,13 +112,38 @@ class Profile extends React.Component {
     const changes = { ...this.state.user };
     changes.userLevel += 1;
     userRequests.updateUser(changes, user.dbKey);
+    userRequests.getCurrentUser(`${authRequests.currentUser()}`)
+      .then((data) => {
+        this.setState({ user: data });
+      });
   }
 
   render() {
     const { user } = this.state;
 
     const categoryXp = (category) => {
-      const currentXp = category - ((user.userLevel - 1) * 200);
+      let currentXp = category;
+      if (category > 2000) {
+        currentXp = (category - 2000);
+      } else if (category > 1800) {
+        currentXp = (category - 1800);
+      } else if (category > 1600) {
+        currentXp = (category - 1600);
+      } else if (category > 1400) {
+        currentXp = (category - 1400);
+      } else if (category > 1200) {
+        currentXp = (category - 1200);
+      } else if (category > 1000) {
+        currentXp = (category - 1000);
+      } else if (category > 800) {
+        currentXp = (category - 800);
+      } else if (category > 600) {
+        currentXp = (category - 600);
+      } else if (category > 400) {
+        currentXp = (category - 400);
+      } else if (category > 200) {
+        currentXp = (category - 200);
+      }
       return currentXp;
     };
 
